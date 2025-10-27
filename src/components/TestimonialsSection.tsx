@@ -1,4 +1,5 @@
 import { Star } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
@@ -149,6 +150,38 @@ const testimonials = [
 ]
 
 export const TestimonialsSection = () => {
+  const scrollRef = useRef<HTMLDivElement | null>(null)
+  const [currentVideo, setCurrentVideo] = useState(0)
+  const [videoCount, setVideoCount] = useState(0)
+
+  useEffect(() => {
+    const container = scrollRef.current
+    if (!container) return
+
+    const cards = container.querySelectorAll('.story-card')
+    setVideoCount(cards.length)
+
+    const GAP = 24 // gap-6 == 1.5rem == 24px
+
+    const handle = () => {
+      if (!container) return
+      const first = container.querySelector<HTMLElement>('.story-card')
+      if (!first) return
+      const cardWidth = first.getBoundingClientRect().width + GAP
+      const index = Math.round(container.scrollLeft / cardWidth)
+      setCurrentVideo(Math.min(Math.max(index, 0), Math.max(cards.length - 1, 0)))
+    }
+
+    handle()
+    container.addEventListener('scroll', handle, { passive: true })
+    window.addEventListener('resize', handle)
+
+    return () => {
+      container.removeEventListener('scroll', handle)
+      window.removeEventListener('resize', handle)
+    }
+  }, [])
+
   return (
     <section
       id='depoimentos'
@@ -256,10 +289,10 @@ export const TestimonialsSection = () => {
           </div>
 
           {/* Stories-style horizontal scroll */}
-          <div className="relative w-full overflow-x-auto pb-8 hide-scrollbar">
+          <div className="relative w-full overflow-x-auto pb-8 hide-scrollbar" ref={scrollRef}>
             <div className="flex gap-6 px-4 md:px-8 min-w-max pb-4">
               {/* Story 1 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
                     src={encodeURI('/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4')}
@@ -281,7 +314,7 @@ export const TestimonialsSection = () => {
               </div>
 
               {/* Story 2 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
                     src={encodeURI('/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4')}
@@ -301,7 +334,7 @@ export const TestimonialsSection = () => {
               </div>
 
               {/* Story 3 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
                     src={encodeURI('/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4')}
@@ -321,7 +354,7 @@ export const TestimonialsSection = () => {
               </div>
 
               {/* Story 4 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
                     src={encodeURI('/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4')}
@@ -341,7 +374,7 @@ export const TestimonialsSection = () => {
               </div>
 
               {/* Story 5 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
                     src={encodeURI('/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4')}
@@ -361,10 +394,31 @@ export const TestimonialsSection = () => {
               </div>
             </div>
 
-            {/* Scroll indicator */}
-            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
-              <div className="w-16 h-1.5 rounded-full bg-primary/40"></div>
-              <div className="w-16 h-1.5 rounded-full bg-primary/20"></div>
+            {/* Dots indicators */}
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {Array.from({ length: videoCount }).map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => {
+                    const container = scrollRef.current
+                    if (!container) return
+                    const first = container.querySelector<HTMLElement>('.story-card')
+                    if (!first) return
+                    const GAP = 24
+                    const cardWidth = first.getBoundingClientRect().width + GAP
+                    container.scrollTo({ left: i * cardWidth, behavior: 'smooth' })
+                  }}
+                  aria-label={`Ir para vídeo ${i + 1}`}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    i === currentVideo ? 'bg-primary' : 'bg-black/20'
+                  }`}
+                />
+              ))}
+            </div>
+
+            {/* Numeric counter */}
+            <div className="absolute bottom-2 right-4 text-sm text-white/90 bg-black/30 px-2 py-1 rounded">
+              {videoCount > 0 ? `${currentVideo + 1}/${videoCount}` : ''}
             </div>
           </div>
         </div>
