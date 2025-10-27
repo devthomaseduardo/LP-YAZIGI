@@ -9,12 +9,15 @@ import { TestimonialsSection } from '@/components/TestimonialsSection'
 import { GallerySection } from '@/components/GallerySection'
 import { CTASection } from '@/components/CTASection'
 import { Footer } from '@/components/Footer'
+import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
+
 
 const Index = () => {
   return (
     <div className='min-h-screen'>
       <AreaDoAlunoButton />
       <EnrollmentModal />
+       <FloatingWhatsApp />
       <HeroSection />
       <AudienceCards />
       <BenefitsSection />

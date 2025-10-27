@@ -1,4 +1,3 @@
-import { Play } from 'lucide-react'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import Autoplay from 'embla-carousel-autoplay'
 import {
@@ -11,6 +10,11 @@ import {
 import welcomeIsa from '@/assets/welcome-isa.png'
 import welcomePedro from '@/assets/welcome-pedro.png'
 import studentMother from '@/assets/student-mother.png'
+import dep02 from '@/assets/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4'
+import dep03 from '@/assets/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4'
+import dep04 from '@/assets/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4'
+import dep05 from '@/assets/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4'
+import dep06 from '@/assets/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4'
 
 const galleryItems = [
   {
@@ -28,54 +32,71 @@ const galleryItems = [
   },
   {
     type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_01_Silvia Fv1 (1).mp4',
-    thumbnail: welcomeIsa,
-    alt: 'Depoimento Silvia',
-    title: 'Depoimento Silvia'
-  },
-  {
-    type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4',
+    src: dep02,
     thumbnail: welcomePedro,
     alt: 'Depoimento Nalva',
     title: 'Depoimento Nalva'
   },
   {
     type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4',
+    src: dep03,
     thumbnail: studentMother,
     alt: 'Depoimento Leandro',
     title: 'Depoimento Leandro'
   },
   {
     type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4',
+    src: dep04,
     thumbnail: welcomeIsa,
     alt: 'Depoimento Alice',
     title: 'Depoimento Alice'
   },
   {
     type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4',
+    src: dep05,
     thumbnail: welcomePedro,
     alt: 'Depoimento Nivea',
     title: 'Depoimento Nivea'
   },
   {
     type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4',
+    src: dep06,
     thumbnail: studentMother,
     alt: 'Depoimento JP',
     title: 'Depoimento JP'
-  },
-  {
-    type: 'video' as const,
-    src: '/videos/YAZIGI_DEP_07_Nayla Fv1 (1).mp4',
-    thumbnail: welcomeIsa,
-    alt: 'Depoimento Nayla',
-    title: 'Depoimento Nayla'
   }
 ]
+
+const youtubeLinks = [
+  'https://youtu.be/mjMAcOoG_vo?si=XXVpXZQFiJTo18jA',
+  'https://youtube.com/shorts/ES8RF0sFd30?si=Tp9Weih5SLgjivtA',
+  'https://youtube.com/shorts/4DVruze6lWA?si=BpiTxATNQ2TrYkUl'
+]
+
+function getYouTubeEmbed(url: string) {
+  try {
+    const u = new URL(url)
+    // youtu.be short links
+    if (u.hostname.includes('youtu.be')) {
+      const id = u.pathname.replace('/', '')
+      return `https://www.youtube.com/embed/${id}${u.search || ''}`
+    }
+    // youtube.com links (watch, shorts)
+    if (u.hostname.includes('youtube.com')) {
+      if (u.pathname.startsWith('/shorts/')) {
+        const id = u.pathname.split('/shorts/')[1]
+        return `https://www.youtube.com/embed/${id}${u.search || ''}`
+      }
+      if (u.searchParams.has('v')) {
+        const id = u.searchParams.get('v')
+        return `https://www.youtube.com/embed/${id}${u.search || ''}`
+      }
+    }
+  } catch (e) {
+    // fallthrough
+  }
+  return url
+}
 
 
 
@@ -112,33 +133,41 @@ export const GallerySection = () => {
                 <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/2'>
                   <div className='edu-card h-full overflow-hidden group'>
                     <div className='relative aspect-[4/5] overflow-hidden rounded-2xl shadow-md'>
-                      {item.type === 'image' ? (
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
-                        />
-                      ) : (
-                        <div className='relative w-full h-full'>
+                        {item.type === 'image' ? (
                           <img
-                            src={item.thumbnail}
+                            src={item.src}
                             alt={item.alt}
-                            className='w-full h-full object-cover'
+                            className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
                           />
-                          <div className='absolute inset-0 bg-primary/30 flex items-center justify-center'>
-                            <button
-                              onClick={() => window.open(item.src, '_blank')}
-                              className='w-20 h-20 rounded-full bg-primary text-primary-foreground flex items-center justify-center transition-transform hover:scale-110 shadow-lg'
-                              aria-label='Assistir vídeo'
-                            >
-                              <Play
-                                className='h-10 w-10 ml-1'
-                                fill='currentColor'
+                        ) : (
+                          // Vídeos: render inline quando possível (mp4) ou iframe para YouTube
+                          <div className='relative w-full h-full'>
+                            {typeof item.src === 'string' && (item.src.includes('.mp4') || item.src.endsWith('.mp4')) ? (
+                              <video
+                                src={item.src}
+                                controls
+                                playsInline
+                                className='w-full h-full object-cover bg-black'
                               />
-                            </button>
+                            ) : typeof item.src === 'string' && (item.src.includes('youtube.com') || item.src.includes('youtu.be')) ? (
+                              <iframe
+                                src={getYouTubeEmbed(item.src)}
+                                title={item.title}
+                                className='w-full h-full object-cover'
+                                frameBorder='0'
+                                allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                                allowFullScreen
+                              />
+                            ) : (
+                              // Fallback: thumbnail (sem botão gigante de play)
+                              <img
+                                src={item.thumbnail}
+                                alt={item.alt}
+                                className='w-full h-full object-cover'
+                              />
+                            )}
                           </div>
-                        </div>
-                      )}
+                        )}
 
                       {/* Overlay com título */}
                       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-primary/90 to-transparent p-6'>
@@ -159,6 +188,31 @@ export const GallerySection = () => {
           <div className='flex justify-center gap-2 mt-8 md:hidden'>
             {galleryItems.map((_, index) => (
               <div key={index} className='w-2 h-2 rounded-full bg-primary/30' />
+            ))}
+          </div>
+        </div>
+
+        {/* Sessão de vídeos do YouTube fornecidos */}
+        <div className='max-w-6xl mx-auto mt-12'>
+          <div className='text-center mb-8'>
+            <h3 className='text-3xl font-bold'>Vídeos da Comunidade</h3>
+            <p className='text-muted-foreground'>Assista alguns vídeos selecionados do nosso canal.</p>
+          </div>
+
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
+            {youtubeLinks.map((link, i) => (
+              <div key={i} className='rounded-2xl overflow-hidden shadow-md bg-black'>
+                <div className='relative w-full aspect-video'>
+                  <iframe
+                    src={getYouTubeEmbed(link)}
+                    title={`video-${i}`}
+                    className='w-full h-full'
+                    frameBorder='0'
+                    allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                    allowFullScreen
+                  />
+                </div>
+              </div>
             ))}
           </div>
         </div>
