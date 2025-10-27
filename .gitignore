@@ -25,3 +25,4 @@ dist-ssr
 
 # Ignore large local video assets (use storage or Git LFS instead)
 /src/assets/videos/
+/public/videos/

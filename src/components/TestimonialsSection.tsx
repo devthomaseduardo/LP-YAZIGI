@@ -1,5 +1,6 @@
 import { Star, Play, Pause } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
+import { useVideos } from '@/hooks/useVideos'
 import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
@@ -10,7 +11,7 @@ import {
 } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
 
-const videoTestimonials = [
+const localFallbackVideoTestimonials = [
   {
     name: 'Nalva',
     role: 'Aluna Yázigi',
@@ -178,7 +179,7 @@ const testimonials = [
   }
 ]
 
-const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
+const VideoStoryCard = ({ name, role, src }: { name: string; role: string; src: string }) => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -283,6 +284,14 @@ const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
 export const TestimonialsSection = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const [currentVideo, setCurrentVideo] = useState(0)
+
+  // Buscar vídeos cadastrados no Supabase (retorna public_url)
+  const { data: videos } = useVideos()
+
+  const videoTestimonials = (videos && videos.length > 0)
+    ? videos.map(v => ({ name: v.title || v.filename, role: 'Aluno Yázigi', src: v.public_url }))
+    : localFallbackVideoTestimonials // fallback para lista local (definida acima)
+
   const videoCount = videoTestimonials.length
 
   useEffect(() => {
