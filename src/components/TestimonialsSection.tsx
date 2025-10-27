@@ -181,6 +181,22 @@ const testimonials = [
 const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+  useEffect(() => {
+    // Pré-carrega o vídeo quando o componente montar
+    if (videoRef.current) {
+      const loadVideo = async () => {
+        try {
+          await videoRef.current?.load();
+          setIsLoaded(true);
+        } catch (error) {
+          console.error('Erro ao carregar o vídeo:', error);
+        }
+      };
+      loadVideo();
+    }
+  }, [src]);
 
   const togglePlay = () => {
     if (videoRef.current) {
@@ -211,7 +227,9 @@ const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
           src={src}
           className='h-full w-full object-cover'
           playsInline
-          preload='metadata'
+          preload="auto"
+          poster={`${src}?poster`}
+          onLoadedData={() => videoRef.current?.load()}
           onEnded={() => setIsPlaying(false)}
           onClick={togglePlay}
         />
@@ -221,8 +239,15 @@ const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
             className='absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 group-hover:bg-black/40'
             onClick={togglePlay}
           >
-            <Button className='h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105'>
-              <Play className='h-8 w-8 fill-white text-white ml-0.5' />
+            <Button 
+              className={`h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105 ${!isLoaded ? 'animate-pulse' : ''}`}
+              disabled={!isLoaded}
+            >
+              {isLoaded ? (
+                <Play className='h-8 w-8 fill-white text-white ml-0.5' />
+              ) : (
+                <div className="h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin" />
+              )}
             </Button>
           </div>
         )}

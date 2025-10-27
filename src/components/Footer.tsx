@@ -5,7 +5,8 @@ import {
   Instagram,
   Facebook,
   Linkedin,
-  Youtube
+Youtube, ArrowUp
+
 } from 'lucide-react'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import logo75anos from '@/assets/logo-75anos.png'
@@ -145,12 +146,7 @@ export const Footer = () => {
                 Parte da rede Yázigi - 75 anos de excelência em ensino de
                 idiomas
               </p>
-              <a
-                href='/auth'
-                className='text-white/40 hover:text-white/60 text-xs mt-2 inline-block transition-colors'
-              >
-                Área Administrativa
-              </a>
+
             </div>
             <div className='flex items-center justify-center'>
               <img
@@ -162,6 +158,17 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+{
+  /* Botão Voltar ao Topo */
+}
+<button
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className='fixed bottom-8 right-8 bg-accent hover:bg-accent/90 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
+  aria-label='Voltar ao topo'
+>
+  <ArrowUp className='h-6 w-6' />
+</button>
+
     </footer>
   )
 }
