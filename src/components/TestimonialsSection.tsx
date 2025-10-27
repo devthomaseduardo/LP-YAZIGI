@@ -191,26 +191,67 @@ const VideoStoryCard = ({
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isReady, setIsReady] = useState(false)
+  const [isError, setIsError] = useState<string | null>(null)
 
   useEffect(() => {
     const videoElement = videoRef.current
     if (!videoElement) return
 
-    const handleCanPlayThrough = () => {
+    let timedOut = false
+    const timeoutId = window.setTimeout(() => {
+      timedOut = true
+      // If media events didn't fire, we'll try a lightweight range request as a fallback
+      // (some servers / CORS setups prevent media events)
+      tryRangeProbe(videoElement.src)
+    }, 8000) // 8s timeout to try fallback
+
+    const onLoadedMetadata = () => {
+      // metadata available; video can usually play
       setIsReady(true)
     }
 
-    if (videoElement.readyState >= 3) {
-      setIsReady(true)
+    const onCanPlay = () => setIsReady(true)
+    const onCanPlayThrough = () => setIsReady(true)
+    const onError = () => {
+      setIsError('Erro ao carregar vídeo')
     }
 
-    videoElement.addEventListener('canplaythrough', handleCanPlayThrough)
+    if (videoElement.readyState >= 3) setIsReady(true)
+
+    videoElement.addEventListener('loadedmetadata', onLoadedMetadata)
+    videoElement.addEventListener('canplay', onCanPlay)
+    videoElement.addEventListener('canplaythrough', onCanPlayThrough)
+    videoElement.addEventListener('error', onError)
+
+    async function tryRangeProbe(src: string) {
+      if (!src) return
+      try {
+        // try to fetch a small range to confirm the file is reachable and CORS allows it
+        const resp = await fetch(src, {
+          method: 'GET',
+          headers: { Range: 'bytes=0-16384' }
+        })
+        if (resp && resp.ok) {
+          // try to set isReady — the browser still needs to buffer, but this indicates availability
+          setIsReady(true)
+          setIsError(null)
+        } else {
+          setIsError('Vídeo indisponível')
+        }
+      } catch (err) {
+        console.error('Range probe failed:', err)
+        setIsError('Falha de rede/CORS ao carregar vídeo')
+      }
+    }
 
     return () => {
-      videoElement.removeEventListener('canplaythrough', handleCanPlayThrough)
-      if (isPlaying) {
-        videoElement.pause()
-      }
+      window.clearTimeout(timeoutId)
+      videoElement.removeEventListener('loadedmetadata', onLoadedMetadata)
+      videoElement.removeEventListener('canplay', onCanPlay)
+      videoElement.removeEventListener('canplaythrough', onCanPlayThrough)
+      videoElement.removeEventListener('error', onError)
+      if (isPlaying) videoElement.pause()
+      // if a timeout triggered and the probe is running, it will finish on its own
     }
   }, [isPlaying])
 
@@ -225,6 +266,19 @@ const VideoStoryCard = ({
         })
       }
       setIsPlaying(!isPlaying)
+    }
+  }
+
+  const retryLoad = () => {
+    setIsError(null)
+    setIsReady(false)
+    const v = videoRef.current
+    if (v) {
+      try {
+        v.load()
+      } catch (e) {
+        console.error('Erro no retry load:', e)
+      }
     }
   }
 
@@ -244,20 +298,28 @@ const VideoStoryCard = ({
         {!isPlaying && (
           <div
             className='absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 group-hover:bg-black/40'
-            onClick={togglePlay}
           >
-            <Button
-              className={`h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105 ${
-                !isReady ? 'animate-pulse' : ''
-              }`}
-              disabled={!isReady}
-            >
-              {isReady ? (
-                <Play className='h-8 w-8 fill-white text-white ml-0.5' />
-              ) : (
-                <div className='h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin' />
-              )}
-            </Button>
+            {isError ? (
+              <div className='text-center'>
+                <p className='text-sm text-white mb-3'>{isError}</p>
+                <Button onClick={retryLoad} className='px-4 py-2'>Tentar novamente</Button>
+              </div>
+            ) : (
+              <div onClick={togglePlay}>
+                <Button
+                  className={`h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105 ${
+                    !isReady ? 'animate-pulse' : ''
+                  }`}
+                  disabled={!isReady}
+                >
+                  {isReady ? (
+                    <Play className='h-8 w-8 fill-white text-white ml-0.5' />
+                  ) : (
+                    <div className='h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin' />
+                  )}
+                </Button>
+              </div>
+            )}
           </div>
         )}
 
