@@ -189,7 +189,7 @@ export const TestimonialsSection = () => {
                 stopOnInteraction: true
               })
             ]}
-            className='w-full'
+            className='relative w-full'
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
@@ -231,8 +231,14 @@ export const TestimonialsSection = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className='hidden md:flex' />
-            <CarouselNext className='hidden md:flex' />
+            <CarouselPrevious
+              className='absolute left-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center bg-white/95 text-primary p-2 rounded-full shadow-md hover:scale-105 transition-transform md:left-4'
+              aria-label='Anterior depoimento'
+            />
+            <CarouselNext
+              className='absolute right-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center bg-white/95 text-primary p-2 rounded-full shadow-md hover:scale-105 transition-transform md:right-4'
+              aria-label='Próximo depoimento'
+            />
           </Carousel>
         </div>
 
@@ -256,22 +262,14 @@ export const TestimonialsSection = () => {
               <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
-                    src="/src/assets/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4"
+                    src={encodeURI('/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4')}
                     className="h-full w-full object-cover"
                     controls
+                    playsInline
                     controlsList="nodownload noplaybackrate"
                     preload="metadata"
                   />
-                  {/* Play button overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Play overlay removed to use native video controls */}
                   {/* Info gradient */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
                     <h4 className="text-white font-bold text-lg">Nalva</h4>
@@ -286,21 +284,14 @@ export const TestimonialsSection = () => {
               <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
-                    src="/src/assets/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4"
+                    src={encodeURI('/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4')}
                     className="h-full w-full object-cover"
                     controls
+                    playsInline
                     controlsList="nodownload noplaybackrate"
                     preload="metadata"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Play overlay removed to use native video controls */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
                     <h4 className="text-white font-bold text-lg">Leandro</h4>
                     <p className="text-white/90 text-sm">Aluno Yázigi</p>
@@ -313,21 +304,14 @@ export const TestimonialsSection = () => {
               <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
-                    src="/src/assets/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4"
+                    src={encodeURI('/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4')}
                     className="h-full w-full object-cover"
                     controls
+                    playsInline
                     controlsList="nodownload noplaybackrate"
                     preload="metadata"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Play overlay removed to use native video controls */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
                     <h4 className="text-white font-bold text-lg">Alice</h4>
                     <p className="text-white/90 text-sm">Aluna Yázigi</p>
@@ -340,21 +324,14 @@ export const TestimonialsSection = () => {
               <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
-                    src="/src/assets/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4"
+                    src={encodeURI('/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4')}
                     className="h-full w-full object-cover"
                     controls
+                    playsInline
                     controlsList="nodownload noplaybackrate"
                     preload="metadata"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Play overlay removed to use native video controls */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
                     <h4 className="text-white font-bold text-lg">Nívea</h4>
                     <p className="text-white/90 text-sm">Aluna Yázigi</p>
@@ -367,21 +344,14 @@ export const TestimonialsSection = () => {
               <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
                 <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
                   <video
-                    src="/src/assets/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4"
+                    src={encodeURI('/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4')}
                     className="h-full w-full object-cover"
                     controls
+                    playsInline
                     controlsList="nodownload noplaybackrate"
                     preload="metadata"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
-                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
-                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M8 5v14l11-7z" />
-                        </svg>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Play overlay removed to use native video controls */}
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
                     <h4 className="text-white font-bold text-lg">JP</h4>
                     <p className="text-white/90 text-sm">Aluno Yázigi</p>
