@@ -140,7 +140,7 @@ export const EnrollmentModal = () => {
                 }}
                 className='flex-1 text-lg py-4 rounded-full border-white text-white hover:bg-white/10 font-semibold'
               >
-                <FaUserGraduate className='mr-2 h-5 w-5' />
+                <FaUserGraduate className='text-black mr-2 h-5 w-5' />
                 Já sou aluno
               </Button>
             </div>
