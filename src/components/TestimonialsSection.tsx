@@ -179,58 +179,64 @@ const testimonials = [
   }
 ]
 
-const VideoStoryCard = ({ name, role, src }: { name: string; role: string; src: string }) => {
+const VideoStoryCard = ({
+  name,
+  role,
+  src
+}: {
+  name: string
+  role: string
+  src: string
+}) => {
   const videoRef = useRef<HTMLVideoElement | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isReady, setIsReady] = useState(false)
 
   useEffect(() => {
-    // Pré-carrega o vídeo quando o componente montar
-    if (videoRef.current) {
-      const loadVideo = async () => {
-        try {
-          await videoRef.current?.load();
-          setIsLoaded(true);
-        } catch (error) {
-          console.error('Erro ao carregar o vídeo:', error);
-        }
-      };
-      loadVideo();
+    const videoElement = videoRef.current
+    if (!videoElement) return
+
+    const handleCanPlayThrough = () => {
+      setIsReady(true)
     }
-  }, [src]);
+
+    if (videoElement.readyState >= 3) {
+      setIsReady(true)
+    }
+
+    videoElement.addEventListener('canplaythrough', handleCanPlayThrough)
+
+    return () => {
+      videoElement.removeEventListener('canplaythrough', handleCanPlayThrough)
+      if (isPlaying) {
+        videoElement.pause()
+      }
+    }
+  }, [isPlaying])
 
   const togglePlay = () => {
-    if (videoRef.current) {
+    if (videoRef.current && isReady) {
       if (isPlaying) {
         videoRef.current.pause()
       } else {
         videoRef.current.play().catch(error => {
           console.error('Erro ao tentar tocar o vídeo:', error)
+          setIsPlaying(false)
         })
       }
       setIsPlaying(!isPlaying)
     }
   }
 
-  useEffect(() => {
-    return () => {
-      if (videoRef.current && isPlaying) {
-        videoRef.current.pause()
-      }
-    }
-  }, [])
-
   return (
-    <div className='group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card cursor-pointer'>
+    <div className='group relative h-full w-full rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card cursor-pointer'>
       <div className='absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl'>
         <video
           ref={videoRef}
           src={src}
           className='h-full w-full object-cover'
           playsInline
-          preload="auto"
-          poster={`${src}?poster`}
-          onLoadedData={() => videoRef.current?.load()}
+          preload='auto'
           onEnded={() => setIsPlaying(false)}
           onClick={togglePlay}
         />
@@ -240,14 +246,16 @@ const VideoStoryCard = ({ name, role, src }: { name: string; role: string; src: 
             className='absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 group-hover:bg-black/40'
             onClick={togglePlay}
           >
-            <Button 
-              className={`h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105 ${!isLoaded ? 'animate-pulse' : ''}`}
-              disabled={!isLoaded}
+            <Button
+              className={`h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105 ${
+                !isReady ? 'animate-pulse' : ''
+              }`}
+              disabled={!isReady}
             >
-              {isLoaded ? (
+              {isReady ? (
                 <Play className='h-8 w-8 fill-white text-white ml-0.5' />
               ) : (
-                <div className="h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin" />
+                <div className='h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin' />
               )}
             </Button>
           </div>
@@ -282,43 +290,21 @@ const VideoStoryCard = ({ name, role, src }: { name: string; role: string; src: 
 }
 
 export const TestimonialsSection = () => {
-  const scrollRef = useRef<HTMLDivElement | null>(null)
-  const [currentVideo, setCurrentVideo] = useState(0)
+  // Removido scrollRef e lógica de rolagem manual
+  // const scrollRef = useRef<HTMLDivElement | null>(null)
+  // const [currentVideo, setCurrentVideo] = useState(0)
 
-  // Buscar vídeos cadastrados no Supabase (retorna public_url)
+  // Nota: Assumindo que useVideos() retorna { data: [videos] } ou null/undefined
   const { data: videos } = useVideos()
 
-  const videoTestimonials = (videos && videos.length > 0)
-    ? videos.map(v => ({ name: v.title || v.filename, role: 'Aluno Yázigi', src: v.public_url }))
-    : localFallbackVideoTestimonials // fallback para lista local (definida acima)
-
-  const videoCount = videoTestimonials.length
-
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-
-    const GAP = 24
-
-    const handleScroll = () => {
-      if (!container) return
-      const firstCard = container.querySelector<HTMLElement>('.story-card')
-      if (!firstCard) return
-
-      const cardWidth = firstCard.offsetWidth + GAP
-      const index = Math.round(container.scrollLeft / cardWidth)
-      setCurrentVideo(Math.min(Math.max(index, 0), videoCount - 1))
-    }
-
-    handleScroll()
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', handleScroll)
-
-    return () => {
-      container.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', handleScroll)
-    }
-  }, [videoCount])
+  const videoTestimonials =
+    videos && videos.length > 0
+      ? videos.map(v => ({
+          name: v.title || v.filename,
+          role: 'Aluno Yázigi',
+          src: v.public_url
+        }))
+      : localFallbackVideoTestimonials
 
   return (
     <section
@@ -348,6 +334,7 @@ export const TestimonialsSection = () => {
           </p>
         </div>
 
+        {/* 1. CARROSSEL DE DEPOIMENTOS (Texto) - MANTIDO */}
         <div className='max-w-6xl mx-auto'>
           <Carousel
             opts={{
@@ -412,6 +399,7 @@ export const TestimonialsSection = () => {
           </Carousel>
         </div>
 
+        {/* 2. CARROSSEL DE VÍDEOS (Stories - AGORA USANDO EMBLE) */}
         <div className='mt-16 md:mt-24'>
           <div className='text-center mb-12'>
             <h3 className='text-2xl md:text-4xl font-bold mb-4'>
@@ -424,56 +412,44 @@ export const TestimonialsSection = () => {
             </p>
           </div>
 
-          <div
-            className='relative w-full overflow-x-auto pb-8 hide-scrollbar'
-            ref={scrollRef}
-          >
-            <div className='flex gap-6 px-4 md:px-8 min-w-max pb-4'>
-              {videoTestimonials.map((video, index) => (
-                <VideoStoryCard key={index} {...video} />
-              ))}
-            </div>
+          <div className='relative w-full max-w-6xl mx-auto'>
+            <Carousel
+              opts={{
+                align: 'start',
+                loop: false, // Geralmente Stories não fazem loop
+                breakpoints: {
+                  '(min-width: 640px)': { slidesToScroll: 2, dragFree: true },
+                  '(min-width: 1024px)': { slidesToScroll: 3, dragFree: true }
+                }
+              }}
+              className='relative'
+            >
+              <CarouselContent className='py-4'>
+                {videoTestimonials.map((video, index) => (
+                  <CarouselItem
+                    key={index}
+                    // Largura fixa para efeito de Stories (280px)
+                    className='basis-[296px] md:basis-1/2 lg:basis-1/3'
+                  >
+                    <div className='h-[500px]'>
+                      <VideoStoryCard {...video} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
 
-            <div className='mt-4 flex items-center justify-center gap-2'>
-              {videoTestimonials.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    const container = scrollRef.current
-                    if (!container) return
-                    const first =
-                      container.querySelector<HTMLElement>('.story-card')
-                    if (!first) return
-                    const GAP = 24
-                    const cardWidth = first.getBoundingClientRect().width + GAP
-                    container.scrollTo({
-                      left: i * cardWidth,
-                      behavior: 'smooth'
-                    })
-                  }}
-                  aria-label={`Ir para depoimento ${i + 1}`}
-                  className={`w-2 h-2 rounded-full transition-colors ${
-                    i === currentVideo ? 'bg-primary scale-125' : 'bg-black/20'
-                  }`}
-                />
-              ))}
-            </div>
-
-            <div className='absolute top-0 right-4 md:right-8 text-sm text-muted-foreground bg-background/50 px-2 py-1 rounded-b-lg'>
-              {videoCount > 0 ? `${currentVideo + 1}/${videoCount}` : ''}
-            </div>
+              {/* Controles de navegação para o carrossel de vídeos */}
+              <CarouselPrevious
+                className='absolute left-0 md:-left-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-lg transition-transform hover:scale-110'
+                aria-label='Vídeo Anterior'
+              />
+              <CarouselNext
+                className='absolute right-0 md:-right-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-lg transition-transform hover:scale-110'
+                aria-label='Próximo Vídeo'
+              />
+            </Carousel>
           </div>
         </div>
-
-        <style jsx>{`
-          .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `}</style>
       </div>
     </section>
   )
