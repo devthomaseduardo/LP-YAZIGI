@@ -1,4 +1,4 @@
-import { Star } from 'lucide-react'
+import { Star, Play, Pause } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import Autoplay from 'embla-carousel-autoplay'
 import {
@@ -8,6 +8,35 @@ import {
   CarouselNext,
   CarouselPrevious
 } from '@/components/ui/carousel'
+import { Button } from '@/components/ui/button'
+
+const videoTestimonials = [
+  {
+    name: 'Nalva',
+    role: 'Aluna Yázigi',
+    src: encodeURI('/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4')
+  },
+  {
+    name: 'Leandro',
+    role: 'Aluno Yázigi',
+    src: encodeURI('/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4')
+  },
+  {
+    name: 'Alice',
+    role: 'Aluna Yázigi',
+    src: encodeURI('/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4')
+  },
+  {
+    name: 'Nívea',
+    role: 'Aluna Yázigi',
+    src: encodeURI('/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4')
+  },
+  {
+    name: 'JP',
+    role: 'Aluno Yázigi',
+    src: encodeURI('/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4')
+  }
+]
 
 const testimonials = [
   {
@@ -149,45 +178,119 @@ const testimonials = [
   }
 ]
 
+const VideoStoryCard = ({ name, role, src }: typeof videoTestimonials[0]) => {
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause()
+      } else {
+        videoRef.current.play().catch(error => {
+          console.error('Erro ao tentar tocar o vídeo:', error)
+        })
+      }
+      setIsPlaying(!isPlaying)
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (videoRef.current && isPlaying) {
+        videoRef.current.pause()
+      }
+    }
+  }, [])
+
+  return (
+    <div className='group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card cursor-pointer'>
+      <div className='absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl'>
+        <video
+          ref={videoRef}
+          src={src}
+          className='h-full w-full object-cover'
+          playsInline
+          preload='metadata'
+          onEnded={() => setIsPlaying(false)}
+          onClick={togglePlay}
+        />
+
+        {!isPlaying && (
+          <div
+            className='absolute inset-0 flex items-center justify-center bg-black/30 transition-opacity duration-300 group-hover:bg-black/40'
+            onClick={togglePlay}
+          >
+            <Button className='h-16 w-16 rounded-full bg-accent/90 hover:bg-accent shadow-xl transition-all duration-300 hover:scale-105'>
+              <Play className='h-8 w-8 fill-white text-white ml-0.5' />
+            </Button>
+          </div>
+        )}
+
+        {isPlaying && (
+          <div className='absolute inset-0 flex items-center justify-center pointer-events-none'>
+            <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black/50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300'>
+              <Pause className='h-6 w-6 text-white' />
+            </div>
+          </div>
+        )}
+
+        <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4'>
+          <h4
+            className='text-white font-bold text-lg'
+            style={{ textShadow: '0 1px 4px rgba(0,0,0,0.8)' }}
+          >
+            {name}
+          </h4>
+          <p
+            className='text-white/90 text-sm'
+            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.8)' }}
+          >
+            {role}
+          </p>
+        </div>
+      </div>
+      <div className='absolute -bottom-2 -right-2 w-48 h-48 bg-accent/20 blur-2xl rounded-full opacity-70'></div>
+    </div>
+  )
+}
+
 export const TestimonialsSection = () => {
   const scrollRef = useRef<HTMLDivElement | null>(null)
   const [currentVideo, setCurrentVideo] = useState(0)
-  const [videoCount, setVideoCount] = useState(0)
+  const videoCount = videoTestimonials.length
 
   useEffect(() => {
     const container = scrollRef.current
     if (!container) return
 
-    const cards = container.querySelectorAll('.story-card')
-    setVideoCount(cards.length)
+    const GAP = 24
 
-    const GAP = 24 // gap-6 == 1.5rem == 24px
-
-    const handle = () => {
+    const handleScroll = () => {
       if (!container) return
-      const first = container.querySelector<HTMLElement>('.story-card')
-      if (!first) return
-      const cardWidth = first.getBoundingClientRect().width + GAP
+      const firstCard = container.querySelector<HTMLElement>('.story-card')
+      if (!firstCard) return
+
+      const cardWidth = firstCard.offsetWidth + GAP
       const index = Math.round(container.scrollLeft / cardWidth)
-      setCurrentVideo(Math.min(Math.max(index, 0), Math.max(cards.length - 1, 0)))
+      setCurrentVideo(Math.min(Math.max(index, 0), videoCount - 1))
     }
 
-    handle()
-    container.addEventListener('scroll', handle, { passive: true })
-    window.addEventListener('resize', handle)
+    handleScroll()
+    container.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
 
     return () => {
-      container.removeEventListener('scroll', handle)
-      window.removeEventListener('resize', handle)
+      container.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
     }
-  }, [])
+  }, [videoCount])
 
   return (
     <section
       id='depoimentos'
       className='py-16 md:py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'
     >
-      {/* Background shapes */}
       <div className='absolute top-10 left-10 w-64 md:w-80 h-64 md:h-80 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl' />
       <div className='absolute bottom-10 right-10 w-64 md:w-72 h-64 md:h-72 bg-gradient-to-br from-cyan/5 to-transparent rounded-full blur-3xl' />
 
@@ -201,12 +304,13 @@ export const TestimonialsSection = () => {
 
           <h2 className='text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight px-4'>
             <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-              Vidas Transformadas Pelo Yázigi
+              Resultados Comprovados
             </span>
           </h2>
 
           <p className='text-base md:text-xl text-muted-foreground max-w-2xl mx-auto px-4'>
-            Descubra como nossos alunos conquistaram seus sonhos com a fluência
+            A experiência dos nossos alunos é a melhor prova de que nossa
+            metodologia funciona.
           </p>
         </div>
 
@@ -214,7 +318,11 @@ export const TestimonialsSection = () => {
           <Carousel
             opts={{
               align: 'start',
-              loop: true
+              loop: true,
+              breakpoints: {
+                '(min-width: 768px)': { slidesToScroll: 2 },
+                '(min-width: 1024px)': { slidesToScroll: 3 }
+              }
             }}
             plugins={[
               Autoplay({
@@ -229,10 +337,8 @@ export const TestimonialsSection = () => {
                 <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/3'>
                   <div className='group relative h-full'>
                     <div className='relative overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-primary to-primary/80 border-2 border-primary/30 hover:border-accent/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 p-6 md:p-8 h-full flex flex-col'>
-                      {/* Decorative corner */}
                       <div className='absolute top-0 right-0 w-24 h-24 md:w-32 md:h-32 bg-gradient-to-bl from-accent/30 to-transparent rounded-bl-full' />
 
-                      {/* Rating */}
                       <div className='flex gap-1 mb-3 md:mb-4 relative z-10'>
                         {[...Array(testimonial.rating)].map((_, i) => (
                           <Star
@@ -242,12 +348,10 @@ export const TestimonialsSection = () => {
                         ))}
                       </div>
 
-                      {/* Content */}
                       <p className='mb-4 md:mb-6 leading-relaxed text-white text-base md:text-lg flex-1 relative z-10'>
                         "{testimonial.content}"
                       </p>
 
-                      {/* Author */}
                       <div className='border-t border-white/20 pt-3 md:pt-4 relative z-10'>
                         <p className='font-bold text-white text-base md:text-lg'>
                           {testimonial.name}
@@ -258,172 +362,75 @@ export const TestimonialsSection = () => {
                       </div>
                     </div>
 
-                    {/* Floating decoration */}
                     <div className='absolute -bottom-4 -right-4 w-20 h-20 md:w-24 md:h-24 rounded-full bg-accent/10 blur-2xl group-hover:scale-150 transition-all duration-500 -z-10' />
                   </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
             <CarouselPrevious
-              className='absolute left-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center bg-white/95 text-primary p-2 rounded-full shadow-md hover:scale-105 transition-transform md:left-4'
-              aria-label='Anterior depoimento'
+              className='absolute left-0 md:-left-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-lg transition-transform hover:scale-110'
+              aria-label='Depoimento Anterior'
             />
             <CarouselNext
-              className='absolute right-2 top-1/2 -translate-y-1/2 z-20 flex items-center justify-center bg-white/95 text-primary p-2 rounded-full shadow-md hover:scale-105 transition-transform md:right-4'
-              aria-label='Próximo depoimento'
+              className='absolute right-0 md:-right-8 top-1/2 -translate-y-1/2 z-20 h-10 w-10 bg-primary text-primary-foreground hover:bg-primary/90 rounded-full shadow-lg transition-transform hover:scale-110'
+              aria-label='Próximo Depoimento'
             />
           </Carousel>
         </div>
 
-        {/* Video Testimonials */}
-        <div className="mt-16 md:mt-24">
-          <div className="text-center mb-12">
-            <h3 className="text-2xl md:text-4xl font-bold mb-4">
-              <span className="bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent">
-                Histórias dos Nossos Alunos
+        <div className='mt-16 md:mt-24'>
+          <div className='text-center mb-12'>
+            <h3 className='text-2xl md:text-4xl font-bold mb-4'>
+              <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
+                Assista Nossas Histórias de Sucesso
               </span>
             </h3>
-            <p className="text-base md:text-lg text-muted-foreground">
-              Assista aos depoimentos reais de quem já transformou sua vida
+            <p className='text-base md:text-lg text-muted-foreground'>
+              Veja o que alunos e pais têm a dizer sobre o Yázigi Swiss Park.
             </p>
           </div>
 
-          {/* Stories-style horizontal scroll */}
-          <div className="relative w-full overflow-x-auto pb-8 hide-scrollbar" ref={scrollRef}>
-            <div className="flex gap-6 px-4 md:px-8 min-w-max pb-4">
-              {/* Story 1 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
-                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
-                  <video
-                    src={encodeURI('/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4')}
-                    className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    controlsList="nodownload noplaybackrate"
-                    preload="metadata"
-                  />
-                  {/* Play overlay removed to use native video controls */}
-                  {/* Info gradient */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
-                    <h4 className="text-white font-bold text-lg">Nalva</h4>
-                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
-                  </div>
-                </div>
-                {/* Card shadow/glow effect */}
-                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-accent/20 blur-2xl rounded-full opacity-70"></div>
-              </div>
-
-              {/* Story 2 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
-                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
-                  <video
-                    src={encodeURI('/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4')}
-                    className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    controlsList="nodownload noplaybackrate"
-                    preload="metadata"
-                  />
-                  {/* Play overlay removed to use native video controls */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
-                    <h4 className="text-white font-bold text-lg">Leandro</h4>
-                    <p className="text-white/90 text-sm">Aluno Yázigi</p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-primary/20 blur-2xl rounded-full opacity-70"></div>
-              </div>
-
-              {/* Story 3 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
-                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
-                  <video
-                    src={encodeURI('/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4')}
-                    className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    controlsList="nodownload noplaybackrate"
-                    preload="metadata"
-                  />
-                  {/* Play overlay removed to use native video controls */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
-                    <h4 className="text-white font-bold text-lg">Alice</h4>
-                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-cyan/20 blur-2xl rounded-full opacity-70"></div>
-              </div>
-
-              {/* Story 4 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
-                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
-                  <video
-                    src={encodeURI('/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4')}
-                    className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    controlsList="nodownload noplaybackrate"
-                    preload="metadata"
-                  />
-                  {/* Play overlay removed to use native video controls */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
-                    <h4 className="text-white font-bold text-lg">Nívea</h4>
-                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-accent/20 blur-2xl rounded-full opacity-70"></div>
-              </div>
-
-              {/* Story 5 */}
-              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 story-card">
-                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
-                  <video
-                    src={encodeURI('/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4')}
-                    className="h-full w-full object-cover"
-                    controls
-                    playsInline
-                    controlsList="nodownload noplaybackrate"
-                    preload="metadata"
-                  />
-                  {/* Play overlay removed to use native video controls */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
-                    <h4 className="text-white font-bold text-lg">JP</h4>
-                    <p className="text-white/90 text-sm">Aluno Yázigi</p>
-                  </div>
-                </div>
-                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-primary/20 blur-2xl rounded-full opacity-70"></div>
-              </div>
+          <div
+            className='relative w-full overflow-x-auto pb-8 hide-scrollbar'
+            ref={scrollRef}
+          >
+            <div className='flex gap-6 px-4 md:px-8 min-w-max pb-4'>
+              {videoTestimonials.map((video, index) => (
+                <VideoStoryCard key={index} {...video} />
+              ))}
             </div>
 
-            {/* Dots indicators */}
-            <div className="mt-4 flex items-center justify-center gap-2">
-              {Array.from({ length: videoCount }).map((_, i) => (
+            <div className='mt-4 flex items-center justify-center gap-2'>
+              {videoTestimonials.map((_, i) => (
                 <button
                   key={i}
                   onClick={() => {
                     const container = scrollRef.current
                     if (!container) return
-                    const first = container.querySelector<HTMLElement>('.story-card')
+                    const first =
+                      container.querySelector<HTMLElement>('.story-card')
                     if (!first) return
                     const GAP = 24
                     const cardWidth = first.getBoundingClientRect().width + GAP
-                    container.scrollTo({ left: i * cardWidth, behavior: 'smooth' })
+                    container.scrollTo({
+                      left: i * cardWidth,
+                      behavior: 'smooth'
+                    })
                   }}
-                  aria-label={`Ir para vídeo ${i + 1}`}
+                  aria-label={`Ir para depoimento ${i + 1}`}
                   className={`w-2 h-2 rounded-full transition-colors ${
-                    i === currentVideo ? 'bg-primary' : 'bg-black/20'
+                    i === currentVideo ? 'bg-primary scale-125' : 'bg-black/20'
                   }`}
                 />
               ))}
             </div>
 
-            {/* Numeric counter */}
-            <div className="absolute bottom-2 right-4 text-sm text-white/90 bg-black/30 px-2 py-1 rounded">
+            <div className='absolute top-0 right-4 md:right-8 text-sm text-muted-foreground bg-background/50 px-2 py-1 rounded-b-lg'>
               {videoCount > 0 ? `${currentVideo + 1}/${videoCount}` : ''}
             </div>
           </div>
         </div>
 
-        {/* Custom scroll style */}
         <style jsx>{`
           .hide-scrollbar::-webkit-scrollbar {
             display: none;
