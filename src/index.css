@@ -1,0 +1,160 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Yázigi Brand Colors */
+    --yazigi-purple: 270 70% 45%;
+    --yazigi-lime: 75 80% 55%;
+    --yazigi-cyan: 190 75% 65%;
+    
+    /* Base Colors - Clean White Theme */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 15%;
+
+    /* Primary = Yázigi Purple for CTAs */
+    --primary: 270 70% 45%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 270 70% 38%;
+
+    /* Secondary = Subtle Gray */
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 10% 15%;
+
+    /* Muted = Light Background for Sections */
+    --muted: 240 5% 98%;
+    --muted-foreground: 240 8% 45%;
+
+    /* Accent = Lime for Highlights */
+    --accent: 75 80% 55%;
+    --accent-foreground: 240 10% 15%;
+
+    /* Cyan for Dividers and Subtle Backgrounds */
+    --cyan: 190 75% 65%;
+    --cyan-light: 190 75% 95%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 240 10% 90%;
+    --input: 240 10% 90%;
+    --ring: 270 70% 45%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(270 70% 45% / 0.95), hsl(270 70% 35% / 0.9));
+    --gradient-accent: linear-gradient(135deg, hsl(75 80% 55%), hsl(190 75% 65%));
+    
+    /* Shadows */
+    --shadow-card: 0 4px 20px hsl(240 10% 15% / 0.08);
+    --shadow-card-hover: 0 8px 30px hsl(240 10% 15% / 0.12);
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-poppins;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold;
+  }
+}
+
+@layer components {
+  /* Wavy Path Lines inspired by Yázigi Logo */
+  .path-line {
+    @apply absolute pointer-events-none;
+  }
+  
+  /* Educational Card Style */
+  .edu-card {
+    @apply bg-card rounded-2xl p-8 transition-all duration-300;
+    box-shadow: var(--shadow-card);
+  }
+  
+  .edu-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    @apply -translate-y-1;
+  }
+  
+  /* Icon Badge */
+  .icon-badge {
+    @apply w-14 h-14 rounded-xl flex items-center justify-center;
+    background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cyan)));
+  }
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Additional animations */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
