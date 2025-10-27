@@ -235,6 +235,180 @@ export const TestimonialsSection = () => {
             <CarouselNext className='hidden md:flex' />
           </Carousel>
         </div>
+
+        {/* Video Testimonials */}
+        <div className="mt-16 md:mt-24">
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-4xl font-bold mb-4">
+              <span className="bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent">
+                Histórias dos Nossos Alunos
+              </span>
+            </h3>
+            <p className="text-base md:text-lg text-muted-foreground">
+              Assista aos depoimentos reais de quem já transformou sua vida
+            </p>
+          </div>
+
+          {/* Stories-style horizontal scroll */}
+          <div className="relative w-full overflow-x-auto pb-8 hide-scrollbar">
+            <div className="flex gap-6 px-4 md:px-8 min-w-max pb-4">
+              {/* Story 1 */}
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
+                  <video
+                    src="/src/assets/videos/YAZIGI_DEP_02_Nalva Fv1 (1).mp4"
+                    className="h-full w-full object-cover"
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                  />
+                  {/* Play button overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
+                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Info gradient */}
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
+                    <h4 className="text-white font-bold text-lg">Nalva</h4>
+                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
+                  </div>
+                </div>
+                {/* Card shadow/glow effect */}
+                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-accent/20 blur-2xl rounded-full opacity-70"></div>
+              </div>
+
+              {/* Story 2 */}
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
+                  <video
+                    src="/src/assets/videos/YAZIGI_DEP_03_Leandro Fv1 (1).mp4"
+                    className="h-full w-full object-cover"
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
+                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
+                    <h4 className="text-white font-bold text-lg">Leandro</h4>
+                    <p className="text-white/90 text-sm">Aluno Yázigi</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-primary/20 blur-2xl rounded-full opacity-70"></div>
+              </div>
+
+              {/* Story 3 */}
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
+                  <video
+                    src="/src/assets/videos/YAZIGI_DEP_04_Alice Fv1 (2).mp4"
+                    className="h-full w-full object-cover"
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
+                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
+                    <h4 className="text-white font-bold text-lg">Alice</h4>
+                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-cyan/20 blur-2xl rounded-full opacity-70"></div>
+              </div>
+
+              {/* Story 4 */}
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
+                  <video
+                    src="/src/assets/videos/YAZIGI_DEP_05_Nivea Fv1 (1).mp4"
+                    className="h-full w-full object-cover"
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
+                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
+                    <h4 className="text-white font-bold text-lg">Nívea</h4>
+                    <p className="text-white/90 text-sm">Aluna Yázigi</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-accent/20 blur-2xl rounded-full opacity-70"></div>
+              </div>
+
+              {/* Story 5 */}
+              <div className="group relative w-[280px] h-[500px] rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5">
+                <div className="absolute inset-[2px] rounded-3xl overflow-hidden bg-white shadow-2xl">
+                  <video
+                    src="/src/assets/videos/YAZIGI_DEP_06_JP Fv1 (1).mp4"
+                    className="h-full w-full object-cover"
+                    controls
+                    controlsList="nodownload noplaybackrate"
+                    preload="metadata"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="w-16 h-16 rounded-full bg-white/30 backdrop-blur-sm flex items-center justify-center">
+                      <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center transform translate-x-0.5">
+                        <svg className="w-6 h-6 text-primary" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent pb-6 pt-12 px-4">
+                    <h4 className="text-white font-bold text-lg">JP</h4>
+                    <p className="text-white/90 text-sm">Aluno Yázigi</p>
+                  </div>
+                </div>
+                <div className="absolute -bottom-2 -right-2 w-48 h-48 bg-primary/20 blur-2xl rounded-full opacity-70"></div>
+              </div>
+            </div>
+
+            {/* Scroll indicator */}
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex gap-2">
+              <div className="w-16 h-1.5 rounded-full bg-primary/40"></div>
+              <div className="w-16 h-1.5 rounded-full bg-primary/20"></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Custom scroll style */}
+        <style jsx>{`
+          .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+          }
+          .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+          }
+        `}</style>
       </div>
     </section>
   )

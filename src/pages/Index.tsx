@@ -19,12 +19,12 @@ const Index = () => {
       <EnrollmentModal />
        <FloatingWhatsApp />
       <HeroSection />
-      <AudienceCards />
       <BenefitsSection />
-      <DiagnosticSection />
-      <CoursesSection />
+      <AudienceCards />
       <TestimonialsSection />
+      <CoursesSection />
       <GallerySection />
+      <DiagnosticSection />
       <CTASection />
       <Footer />
     </div>

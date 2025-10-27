@@ -1,6 +1,12 @@
-import { Baby, Users, Briefcase, Globe, Plane } from 'lucide-react'
+import { Baby, Users, Briefcase, Globe, Plane, ChevronDown } from 'lucide-react'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { Button } from '@/components/ui/button'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion"
 
 const levels = [
   {
@@ -11,10 +17,22 @@ const levels = [
     description:
       'Aprendizado através de jogos, música e arte. Desenvolvemos cidadania global enquanto as crianças se divertem naturalmente em inglês.',
     highlights: [
-      'Jogos Educativos',
-      'Arte e Música',
-      'Cidadania Global',
-      'Inglês Natural'
+      {
+        title: 'Jogos Educativos',
+        content: 'Aprendizado lúdico através de jogos interativos, atividades digitais e brincadeiras estruturadas que tornam o inglês uma diversão natural. Desenvolvemos habilidades linguísticas enquanto as crianças se divertem.'
+      },
+      {
+        title: 'Arte e Música',
+        content: 'Expressão criativa através de projetos artísticos, músicas e atividades culturais. As crianças aprendem vocabulário, pronúncia e estruturas linguísticas naturalmente enquanto cantam, desenham e criam.'
+      },
+      {
+        title: 'Cidadania Global',
+        content: 'Desenvolvimento de consciência cultural, respeito à diversidade e compreensão do mundo. Através de projetos e atividades, as crianças aprendem sobre diferentes culturas enquanto praticam o inglês.'
+      },
+      {
+        title: 'Inglês Natural',
+        content: 'Metodologia que prioriza a comunicação natural e espontânea. As crianças desenvolvem confiança para se expressar em inglês através de situações reais e significativas do dia a dia.'
+      }
     ],
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
@@ -27,10 +45,22 @@ const levels = [
     description:
       'Conectados com cultura pop, redes sociais e o mundo digital. Desenvolvem fluência através de projetos e pensamento crítico.',
     highlights: [
-      'Cultura Digital',
-      'Projetos Reais',
-      'Preparação Cambridge',
-      'Fluência Ativa'
+      {
+        title: 'Cultura Digital',
+        content: 'Integração com tecnologia, redes sociais e mídia digital. Os adolescentes aprendem inglês usando as ferramentas que já fazem parte do seu dia a dia, como apps, jogos, séries e música.'
+      },
+      {
+        title: 'Projetos Reais',
+        content: 'Desenvolvimento de projetos práticos que simulam situações da vida real. Os alunos criam conteúdo, participam de debates e resolvem desafios enquanto praticam inglês ativamente.'
+      },
+      {
+        title: 'Preparação Cambridge',
+        content: 'Preparação específica para os exames internacionais Cambridge, incluindo KET, PET e FCE. Material exclusivo e simulados que garantem excelentes resultados nas certificações.'
+      },
+      {
+        title: 'Fluência Ativa',
+        content: 'Metodologia focada na comunicação real e desenvolvimento de habilidades práticas. Os adolescentes ganham confiança para se expressar em inglês em diferentes contextos e situações.'
+      }
     ],
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
@@ -43,10 +73,22 @@ const levels = [
     description:
       'Inglês para carreira, viagens e vida. Business English, preparação TOEFL e comunicação internacional de alto nível.',
     highlights: [
-      'Business English',
-      'Preparação TOEFL',
-      'Networking Global',
-      'Carreira Internacional'
+      {
+        title: 'Business English',
+        content: 'Vocabulário especializado e habilidades essenciais para o ambiente corporativo. Aprenda a conduzir reuniões, fazer apresentações, redigir e-mails profissionais e negociar em inglês com confiança.'
+      },
+      {
+        title: 'Preparação TOEFL',
+        content: 'Programa completo de preparação para o TOEFL iBT, com estratégias específicas para cada seção do teste. Material didático especializado e simulados que garantem pontuações competitivas.'
+      },
+      {
+        title: 'Networking Global',
+        content: 'Desenvolvimento de habilidades para networking internacional. Aprenda a se comunicar efetivamente em ambientes multiculturais e construa relações profissionais globais.'
+      },
+      {
+        title: 'Carreira Internacional',
+        content: 'Preparação específica para oportunidades internacionais, incluindo entrevistas de emprego, chamadas de vídeo e comunicação intercultural no ambiente de trabalho.'
+      }
     ],
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
@@ -59,10 +101,22 @@ const levels = [
     description:
       'Domine o espanhol com metodologia Yázigi. Certificação DELE, cultura hispânica e preparação para o mercado latino-americano.',
     highlights: [
-      'Certificação DELE',
-      'Cultura Hispânica',
-      'Turmas Adaptadas',
-      'Material Pearson'
+      {
+        title: 'Certificação DELE',
+        content: 'Preparação completa para os exames DELE (Diploma de Español como Lengua Extranjera). Metodologia específica e material didático atualizado para garantir seu sucesso na certificação oficial do Instituto Cervantes.'
+      },
+      {
+        title: 'Cultura Hispânica',
+        content: 'Imersão na rica cultura dos países hispânicos. Explore literatura, arte, música, gastronomia e costumes enquanto desenvolve suas habilidades linguísticas em espanhol.'
+      },
+      {
+        title: 'Turmas Adaptadas',
+        content: 'Grupos organizados por nível e objetivos, garantindo um aprendizado personalizado. Metodologia flexível que se adapta ao ritmo e necessidades específicas de cada aluno.'
+      },
+      {
+        title: 'Material Pearson',
+        content: 'Material didático de última geração da Pearson, líder mundial em educação. Recursos multimídia, plataforma digital interativa e conteúdo atualizado para um aprendizado completo.'
+      }
     ],
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
@@ -75,10 +129,22 @@ const levels = [
     description:
       'Programas de intercâmbio personalizados. Viva a experiência de estudar no exterior com todo o suporte Yázigi.',
     highlights: [
-      'Destinos Exclusivos',
-      'Acompanhamento Total',
-      'Vivência Cultural',
-      'Fluência Acelerada'
+      {
+        title: 'Destinos Exclusivos',
+        content: 'Parcerias com as melhores instituições de ensino ao redor do mundo. Programas em países como Inglaterra, Estados Unidos, Canadá, Austrália e Nova Zelândia, com opções para diferentes objetivos e orçamentos.'
+      },
+      {
+        title: 'Acompanhamento Total',
+        content: 'Suporte completo antes, durante e após o intercâmbio. Desde a escolha do programa e documentação até a adaptação no exterior e retorno ao Brasil, conte com nossa equipe especializada.'
+      },
+      {
+        title: 'Vivência Cultural',
+        content: 'Experiência cultural imersiva com hospedagem em famílias locais ou residências estudantis. Atividades extracurriculares, passeios e eventos que proporcionam uma verdadeira imersão na cultura local.'
+      },
+      {
+        title: 'Fluência Acelerada',
+        content: 'Rápida evolução no idioma através da imersão total. Pratique o idioma 24 horas por dia em situações reais, acelerando significativamente seu processo de aprendizagem.'
+      }
     ],
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
@@ -91,10 +157,22 @@ const levels = [
     description:
       'Aprimore habilidades avançadas para negócios, reuniões internacionais e negociações complexas. Foco total na fluência profissional.',
     highlights: [
-      'Business English Avançado',
-      'Negociações Internacionais',
-      'Apresentações Profissionais',
-      'Networking Corporativo'
+      {
+        title: 'Business English Avançado',
+        content: 'Desenvolvimento avançado de habilidades específicas para o ambiente corporativo internacional. Aprenda a liderar reuniões globais, fazer pitch de projetos e gerenciar equipes multiculturais em inglês.'
+      },
+      {
+        title: 'Negociações Internacionais',
+        content: 'Técnicas avançadas de negociação em inglês, incluindo estratégias culturais, linguagem corporal e etiqueta internacional. Prepare-se para conduzir negociações complexas com parceiros globais.'
+      },
+      {
+        title: 'Apresentações Profissionais',
+        content: 'Metodologia especializada para apresentações executivas impactantes. Domine técnicas de storytelling, persuasão e comunicação visual para apresentações memoráveis em inglês.'
+      },
+      {
+        title: 'Networking Corporativo',
+        content: 'Habilidades avançadas para networking em ambientes corporativos internacionais. Aprenda a construir e manter relações profissionais estratégicas em contextos multiculturais.'
+      }
     ],
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
@@ -193,21 +271,24 @@ export const CoursesSection = () => {
                       </p>
 
                       {/* Accordions */}
-                      <div className='mb-4'>
+                      <Accordion type="single" collapsible className="mb-4">
                         {level.highlights.map((highlight, idx) => (
-                          <details
-                            key={idx}
-                            className='mb-2 border border-black/10 rounded-lg overflow-hidden group'
+                          <AccordionItem 
+                            key={idx} 
+                            value={`item-${idx}`}
+                            className="border-b border-black/10 last:border-0"
                           >
-                            <summary className='cursor-pointer px-4 py-2 bg-black/5 text-black font-medium hover:bg-black/10 transition-all'>
-                              {highlight}
-                            </summary>
-                            <div className='px-4 py-2 text-sm text-black/70 bg-black/2'>
-                              Aprenda mais sobre "{highlight}" no curso.
-                            </div>
-                          </details>
+                            <AccordionTrigger className="hover:no-underline hover:bg-black/5 py-3 px-4 text-left">
+                              <span className="text-sm font-medium text-black">{highlight.title}</span>
+                            </AccordionTrigger>
+                            <AccordionContent className="px-4 pb-3">
+                              <p className="text-sm text-black/70 leading-relaxed">
+                                {highlight.content}
+                              </p>
+                            </AccordionContent>
+                          </AccordionItem>
                         ))}
-                      </div>
+                      </Accordion>
                     </div>
 
                     {/* CTA Button */}

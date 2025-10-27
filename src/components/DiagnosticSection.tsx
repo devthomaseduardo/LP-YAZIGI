@@ -11,67 +11,131 @@ export const DiagnosticSection = () => {
   return (
     <>
       <section className='relative py-32 overflow-hidden'>
-        {/* Parallax Background */}
-        <div
-          className='absolute inset-0 bg-cover bg-center bg-fixed'
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            transform: 'translateZ(-1px) scale(1.5)'
-          }}
-        >
-          <div className='absolute inset-0 bg-gradient-to-br from-primary/95 via-primary/90 to-accent/80' />
-        </div>
+        {/* Fundo Moderno em Camadas */}
+        <div className='absolute inset-0'>
+          {/* Base gradient */}
+          <div className='absolute inset-0 bg-primary opacity-95' />
+          
+          {/* Elementos Decorativos */}
+          <div className='absolute inset-0'>
+            <div 
+              className='absolute inset-0 opacity-10'
+              style={{
+                backgroundImage: `url(${heroImage})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+              }}
+            />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_70%)]' />
+            <div className='absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(0,0,0,0.1),transparent_70%)]' />
+          </div>
 
-        {/* Floating shapes with shadow */}
-        <div className='absolute top-20 left-10 w-32 h-32 bg-accent/20 rounded-full blur-3xl animate-pulse shadow-2xl' />
-        <div
-          className='absolute bottom-20 right-10 w-40 h-40 bg-cyan/20 rounded-full blur-3xl animate-pulse shadow-2xl'
-          style={{ animationDelay: '1s' }}
-        />
+          {/* Elementos Flutuantes */}
+          <div className='absolute inset-0 overflow-hidden'>
+            <div className='absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full' />
+            <div className='absolute top-1/3 right-1/4 w-48 h-48 bg-white/5 rounded-full' />
+          </div>
+        </div>
 
         <div className='container px-4 relative z-10'>
           <div className='max-w-4xl mx-auto text-center'>
-            <div className='icon-badge mx-auto mb-6 animate-bounce'>
-              <GraduationCap className='h-7 w-7 text-white' />
+            {/* Ícone com Animação */}
+            <div className='relative mx-auto mb-8 w-20 h-20'>
+              <div className='absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75' />
+              <div className='relative flex items-center justify-center w-full h-full bg-white/10 backdrop-blur-sm rounded-full border border-white/20'>
+                <GraduationCap className='h-8 w-8 text-white' />
+              </div>
             </div>
 
-            <h2 className='text-4xl md:text-6xl font-bold mb-6 text-white'>
-              Qual é o Seu Nível de Voz no Mundo?
+            {/* Tipografia Moderna */}
+            <h2 className='text-4xl md:text-6xl font-bold mb-6 text-white tracking-tight leading-tight'>
+              Descubra Seu Nível de
+              <span className='bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent block mt-2'>
+                Fluência Global
+              </span>
             </h2>
 
-            <p className='text-xl md:text-2xl mb-6 text-white/95 font-light max-w-3xl mx-auto leading-relaxed'>
+            <p className='text-xl md:text-2xl mb-8 text-white/90 font-light max-w-3xl mx-auto leading-relaxed'>
               Nosso{' '}
-              <span className='font-semibold text-accent'>
-                Teste de Nível EXPLORE
+              <span className='relative inline-block'>
+                <span className='absolute -inset-1 bg-accent/20 rounded-lg blur' />
+                <span className='relative text-white font-semibold'>
+                  Diagnóstico Personalizado
+                </span>
               </span>{' '}
-              é a forma mais rápida de descobrir qual curso e turma são ideais
-              para você.
+              é a forma mais rápida de descobrir o curso ideal para o seu perfil
+              no Yázigi Swiss Park.
             </p>
 
-            <p className='text-lg md:text-xl mb-8 text-white/90 max-w-2xl mx-auto'>
-              Receba um diagnóstico preciso, alinhado às escalas de nivelamento
-              internacionais <span className='font-semibold'>GSE e CEFR</span>.
-            </p>
+            {/* Features com Cards Modernos */}
+            <div className='grid md:grid-cols-2 gap-4 mb-12 max-w-3xl mx-auto'>
+              <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors text-left'>
+                <div className='flex items-center gap-4 mb-3'>
+                  <div className='w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center'>
+                    <Clock className='h-6 w-6 text-white' />
+                  </div>
+                  <div>
+                    <h3 className='font-semibold text-white'>Rápido e Preciso</h3>
+                    <p className='text-white/80 text-sm'>Apenas 3 minutos</p>
+                  </div>
+                </div>
+                <p className='text-white/70 text-sm'>
+                  Teste adaptativo que identifica seu nível atual com precisão.
+                </p>
+              </div>
 
-            <div className='flex flex-wrap items-center justify-center gap-6 mb-10 text-white/80'>
-              <span className='flex items-center gap-2'>
-                <Clock className='h-6 w-6 text-accent' />
-                <span>Duração: 3 minutos</span>
-              </span>
-              <span className='flex items-center gap-2'>
-                <BarChart className='h-6 w-6 text-cyan' />
-                <span>Resultado: Diagnóstico Personalizado</span>
-              </span>
+              <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors text-left'>
+                <div className='flex items-center gap-4 mb-3'>
+                  <div className='w-12 h-12 rounded-xl bg-cyan/30 flex items-center justify-center'>
+                    <BarChart className='h-6 w-6 text-white' />
+                  </div>
+                  <div>
+                    <h3 className='font-semibold text-white'>Padrão Internacional</h3>
+                    <p className='text-white/80 text-sm'>GSE e CEFR</p>
+                  </div>
+                </div>
+                <p className='text-white/70 text-sm'>
+                  Alinhado aos padrões internacionais de proficiência para certificação Pearson.
+                </p>
+              </div>
             </div>
 
-            <Button
-              size='lg'
-              onClick={() => setIsModalOpen(true)}
-              className='bg-white text-primary hover:bg-white/90 text-lg px-10 py-7 rounded-full shadow-2xl hover:scale-105 transition-all font-semibold'
-            >
-              <IoLogoWhatsapp className='mr-2 h-6 w-6' />
-              Fazer Meu Diagnóstico Grátis
-            </Button>
+            {/* Botão CTA */}
+            <div className='relative inline-block group'>
+              <div className='absolute -inset-1 bg-accent/70 rounded-full blur-md opacity-70 group-hover:opacity-100 transition-opacity' />
+              <Button
+                size='lg'
+                onClick={() => setIsModalOpen(true)}
+                className='relative bg-accent text-primary hover:bg-accent/90 text-lg px-12 py-8 rounded-full shadow-xl hover:shadow-2xl hover:scale-[1.02] transition-all font-bold'
+              >
+                <IoLogoWhatsapp className='mr-3 h-7 w-7' />
+                Fazer Meu Diagnóstico Grátis
+              </Button>
+            </div>
+
+            {/* Trust Badges */}
+            <div className='mt-12 flex items-center justify-center gap-8'>
+              <div className='text-white/60 text-sm flex items-center gap-2'>
+                <svg className='h-5 w-5' fill='currentColor' viewBox='0 0 20 20'>
+                  <path 
+                    fillRule='evenodd' 
+                    d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' 
+                    clipRule='evenodd' 
+                  />
+                </svg>
+                100% Gratuito
+              </div>
+              <div className='text-white/60 text-sm flex items-center gap-2'>
+                <svg className='h-5 w-5' fill='currentColor' viewBox='0 0 20 20'>
+                  <path 
+                    fillRule='evenodd' 
+                    d='M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z' 
+                    clipRule='evenodd' 
+                  />
+                </svg>
+                Diagnóstico WhatsApp
+              </div>
+            </div>
           </div>
         </div>
       </section>
