@@ -10,6 +10,8 @@ import { GallerySection } from '@/components/GallerySection'
 import { CTASection } from '@/components/CTASection'
 import { Footer } from '@/components/Footer'
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
+import { ImageCarousel } from '@/components/ImageCarousel'
+
 
 
 const Index = () => {
@@ -19,7 +21,12 @@ const Index = () => {
       <EnrollmentModal />
        <FloatingWhatsApp />
       <HeroSection />
+   
+
       <BenefitsSection />
+         
+  <ImageCarousel />
+
       <AudienceCards />
       <TestimonialsSection />
       <CoursesSection />

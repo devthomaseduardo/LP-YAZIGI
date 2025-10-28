@@ -15,7 +15,7 @@ const benefits = [
     title: 'Speaking From Day 1',
     titlePt: 'Conversação Desde o Dia 1',
     description:
-      'Conversação desde a primeira aula e acompanhamento individual para manter o foco e aprender ainda mais rápido',
+      'Metodologia única que estimula o pensamento crítico e coloca o aluno no centro do seu aprendizado. Conversação desde a primeira aula para aprender ainda mais rápido.', // Novo texto
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -24,7 +24,7 @@ const benefits = [
     title: 'Monitored Progress',
     titlePt: 'Progresso Monitorado',
     description:
-      'Professores monitoram o progresso de cada aluno individualmente, garantindo experiência personalizada',
+      'Corpo docente altamente qualificado, que vai muito além do papel de instrutores. São verdadeiros educadores dedicados a proporcionar uma experiência completa e significativa.', // Novo texto
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -33,7 +33,7 @@ const benefits = [
     title: 'Safe & Fun Environment',
     titlePt: 'Ambiente Lúdico e Seguro',
     description:
-      'Crianças aprendem inglês se divertindo, a partir dos 3 anos, em um ambiente seguro',
+      'Crianças aprendem inglês de forma leve e divertida, a partir dos 3 anos, em um ambiente seguro.', // Novo texto
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   },
@@ -126,7 +126,7 @@ export const BenefitsSection = () => {
                   />
 
                   <div className='relative p-8 flex flex-col h-full'>
-                    {/* Icon with hover effect */}
+                    {/* Icon with fixed style (hover removed) */}
                     <div className='mb-6 relative'>
                       <div
                         className={`absolute -top-2 -left-2 w-20 h-20 rounded-2xl ${
@@ -144,7 +144,8 @@ export const BenefitsSection = () => {
                             : benefit.color === 'accent'
                             ? 'bg-gradient-to-br from-accent to-accent/80'
                             : 'bg-gradient-to-br from-cyan to-cyan/80'
-                        } flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                        } flex items-center justify-center shadow-lg transition-all duration-500`}
+                        // Classes de hover (scale e rotate) removidas aqui
                       >
                         <Icon className='h-8 w-8 text-white' />
                       </div>

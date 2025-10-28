@@ -5,46 +5,50 @@ import { Button } from '@/components/ui/button'
 const audiences = [
   {
     icon: Users,
-    title: 'Para Pais',
-    subtitle: 'Confiança para o futuro',
+    title: 'Yázigi Travel',
+    subtitle: 'Intercâmbio e Aventura',
     description:
-      'Metodologia comprovada, segurança e acompanhamento pedagógico de perto. Prepare seu filho para um mundo sem fronteiras.',
+      'Explore o mundo com nossos programas de intercâmbio exclusivos. Segurança, acompanhamento e imersão cultural completa para uma fluência real.',
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
   {
-    icon: GraduationCap,
-    title: 'Para Alunos',
-    subtitle: 'Seu passaporte global',
+    icon: Briefcase,
+    title: 'Yázigi for Business',
+    subtitle: 'Inglês Corporativo',
     description:
-      'De crianças a adultos: aprenda inglês e espanhol de forma natural, divertida e eficaz. Conquiste certificação internacional.',
+      'Soluções personalizadas para o mundo corporativo. Desenvolva as habilidades de comunicação da sua equipe e impulsione a competitividade global da sua empresa.',
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
   {
-    icon: Briefcase,
-    title: 'Para Empresas',
-    subtitle: 'Competitividade global',
+    icon: GraduationCap,
+    title: 'Yázigi for Schools',
+    subtitle: 'Parceria Educacional',
     description:
-      'Soluções corporativas personalizadas. Desenvolva equipes multilíngues, aumente competitividade e expanda mercados.',
+      'Traga a excelência Yázigi para sua escola regular. Metodologia e material didático de ponta, preparando alunos para o futuro global dentro da sala de aula.',
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   }
 ]
 
 export const AudienceCards = () => {
-  const handleWhatsAppClick = (audience: string) => {
-    const messages = {
-      pais: 'Olá!%20Sou%20pai/mãe%20e%20quero%20garantir%20o%20melhor%20ensino%20de%20idiomas%20para%20meu%20filho.%20Conte-me%20mais%20sobre%20a%20metodologia%20Yázigi!',
-      alunos:
-        'Olá!%20Quero%20aprender%20inglês%20ou%20espanhol%20no%20Yázigi%20Swiss%20Park%20e%20conquistar%20fluência%20internacional!',
-      empresas:
-        'Olá!%20Represento%20uma%20empresa%20e%20busco%20soluções%20corporativas%20de%20idiomas%20para%20nossa%20equipe.'
-    }
-    window.open(
-      `https://wa.me/5519991394250?text=${messages[audience as keyof typeof messages]}`,
-      '_blank'
-    )
+  const handleWhatsAppClick = (audienceIndex: number) => {
+    // Mensagens ajustadas para cada novo foco
+    const messages = [
+      // Yázigi Travel (Index 0)
+      'Olá!%20Tenho%20interesse%20em%20saber%20mais%20sobre%20os%20programas%20de%20Intercâmbio%20Yázigi%20Travel%20e%20como%20posso%20participar.',
+      // Yázigi for Business (Index 1)
+      'Olá!%20Busco%20soluções%20de%20Inglês%20Corporativo%20personalizadas%20do%20Yázigi%20for%20Business%20para%20a%20minha%20empresa.',
+      // Yázigi for Schools (Index 2)
+      'Olá!%20Gostaria%20de%20conhecer%20a%20proposta%20do%20Yázigi%20for%20Schools%20para%20parceria%20e%20implementação%20na%20minha%20escola.'
+    ]
+
+    const message =
+      messages[audienceIndex] ||
+      'Olá!%20Tenho%20interesse%20nas%20soluções%20do%20Yázigi%20Swiss%20Park!'
+
+    window.open(`https://wa.me/5519991394250?text=${message}`, '_blank')
   }
 
   return (
@@ -61,7 +65,7 @@ export const AudienceCards = () => {
             </span>
           </div>
           <h2 className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-            Yázigi Para Todos
+            Hub educacional Yázigi
           </h2>
           <p className='text-xl text-muted-foreground max-w-2xl mx-auto'>
             Soluções personalizadas para cada etapa da sua jornada global
@@ -114,7 +118,8 @@ export const AudienceCards = () => {
                             : audience.color === 'accent'
                             ? 'bg-gradient-to-br from-accent to-accent/80'
                             : 'bg-gradient-to-br from-cyan to-cyan/80'
-                        } flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}
+                        } flex items-center justify-center shadow-lg transition-all duration-500`}
+                        // CLASSES REMOVIDAS AQUI: group-hover:scale-110 group-hover:rotate-6
                       >
                         <Icon className='h-8 w-8 text-white' />
                       </div>
@@ -145,11 +150,7 @@ export const AudienceCards = () => {
                     <Button
                       variant='outline'
                       className='w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 rounded-full'
-                      onClick={() =>
-                        handleWhatsAppClick(
-                          index === 0 ? 'pais' : index === 1 ? 'alunos' : 'empresas'
-                        )
-                      }
+                      onClick={() => handleWhatsAppClick(index)}
                     >
                       <IoLogoWhatsapp className='mr-2 h-5 w-5' />
                       Falar no WhatsApp
