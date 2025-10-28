@@ -62,11 +62,6 @@ functions/node_modules/
 # ============================================
 # 🎨 DESIGN / MEDIA (grandes ou brutos)
 # ============================================
-# Ignora fontes e vídeos pesados (usar CDN, Supabase ou YouTube)
-src/assets/videos/
-public/videos/
-src/assets/raw/
-src/assets/originals/
 
 # Mantém imagens otimizadas e ícones
 !src/assets/images/

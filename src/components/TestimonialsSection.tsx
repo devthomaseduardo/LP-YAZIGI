@@ -1,7 +1,8 @@
 'use client'
 
-import { Play } from 'lucide-react'
-import { useState } from 'react'
+import { Star, Play, Pause } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { useVideos } from '@/hooks/useVideos'
 import Autoplay from 'embla-carousel-autoplay'
 import {
   Carousel,
@@ -11,6 +12,19 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
+
+const localFallbackVideoTestimonials = [
+  {
+    name: 'Nalva',
+    role: 'Aluna Yázigi',
+    src: '/videos/YAZIGI_DEP_02_Nalva.mp4'
+  },
+  {
+    name: 'Leandro',
+    role: 'Aluno Yázigi',
+    src: '/videos/YAZIGI_DEP_03_Leandro.mp4'
+  }
+]
 
 const testimonials = [
   {
@@ -29,59 +43,103 @@ const testimonials = [
   }
 ]
 
-// ✅ IDs extraídos dos links YouTube Shorts
-const youtubeVideos = [
-  { id: 'vrgelV__MZA', name: 'Nalva', role: 'Aluna Yázigi' },
-  { id: 'ukD0pFnF730', name: 'Leandro', role: 'Aluno Yázigi' },
-  { id: 'Iz58S1_ARDo', name: 'Maria', role: 'Aluna Yázigi' },
-  { id: '0GdfkVIwH1Q', name: 'João', role: 'Aluno Yázigi' },
-  { id: 'm2nj0l42N2A', name: 'Camila', role: 'Aluna Yázigi' },
-  { id: '9qs3iNNH548', name: 'Pedro', role: 'Aluno Yázigi' }
-]
-
-// 🎬 Player limpo do YouTube (sem controles, autoplay, loop)
-const CleanYouTubeEmbed = ({
-  videoId,
-  autoPlay
+const VideoStoryCard = ({
+  name,
+  role,
+  src
 }: {
-  videoId: string
-  autoPlay?: boolean
+  name: string
+  role: string
+  src: string
 }) => {
-  const [isPlaying, setIsPlaying] = useState(!!autoPlay)
+  const videoRef = useRef<HTMLVideoElement | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isReady, setIsReady] = useState(false)
+  const [isError, setIsError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const v = videoRef.current
+    if (!v) return
+
+    const onReady = () => setIsReady(true)
+    const onError = () => setIsError('Erro ao carregar vídeo')
+    v.addEventListener('canplay', onReady)
+    v.addEventListener('error', onError)
+
+    if (v.readyState >= 3) setIsReady(true)
+
+    return () => {
+      v.removeEventListener('canplay', onReady)
+      v.removeEventListener('error', onError)
+    }
+  }, [])
+
+  const togglePlay = () => {
+    if (!isReady || !videoRef.current) return
+    const v = videoRef.current
+    if (isPlaying) v.pause()
+    else v.play().catch(() => setIsError('Falha ao reproduzir vídeo'))
+    setIsPlaying(!isPlaying)
+  }
 
   return (
-    <div className='relative w-full h-full overflow-hidden rounded-3xl bg-black'>
-      <iframe
-        src={`https://www.youtube.com/embed/${videoId}?autoplay=${
-          isPlaying ? 1 : 0
-        }&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1&rel=0&showinfo=0`}
-        title='Depoimento'
-        className='absolute top-0 left-0 w-full h-full'
-        allow='autoplay; encrypted-media'
+    <div className='relative rounded-3xl overflow-hidden bg-gradient-to-br from-primary/20 via-accent/10 to-cyan/5 h-full'>
+      <video
+        ref={videoRef}
+        src={src}
+        className='h-full w-full object-cover'
+        playsInline
+        preload='metadata'
+        onClick={togglePlay}
+        onEnded={() => setIsPlaying(false)}
       />
 
       {!isPlaying && (
-        <div className='absolute inset-0 flex items-center justify-center bg-black/50'>
-          <Button
-            onClick={() => setIsPlaying(true)}
-            className='h-16 w-16 rounded-full bg-accent/90 hover:bg-accent'
-          >
-            <Play className='h-8 w-8 text-white fill-white' />
-          </Button>
+        <div className='absolute inset-0 flex items-center justify-center bg-black/40'>
+          {isError ? (
+            <p className='text-white text-sm'>{isError}</p>
+          ) : (
+            <Button
+              onClick={togglePlay}
+              disabled={!isReady}
+              className='h-16 w-16 rounded-full bg-accent/90 hover:bg-accent'
+            >
+              {isReady ? (
+                <Play className='h-8 w-8 text-white fill-white' />
+              ) : (
+                <div className='h-8 w-8 border-4 border-white border-t-transparent rounded-full animate-spin' />
+              )}
+            </Button>
+          )}
         </div>
       )}
+
+      <div className='absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4'>
+        <h4 className='text-white font-bold text-lg'>{name}</h4>
+        <p className='text-white/90 text-sm'>{role}</p>
+      </div>
     </div>
   )
 }
 
 export const TestimonialsSection = () => {
+  const { data: videos, loading } = useVideos()
+
+  const videoTestimonials =
+    !loading && videos?.length
+      ? videos.map(v => ({
+          name: v.title || v.filename,
+          role: 'Aluno Yázigi',
+          src: v.public_url
+        }))
+      : localFallbackVideoTestimonials
+
   return (
     <section
       id='depoimentos'
       className='py-20 bg-gradient-to-b from-muted/50 to-background'
     >
       <div className='container mx-auto px-6'>
-        {/* Cabeçalho */}
         <div className='text-center mb-12'>
           <h2 className='text-4xl font-bold bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
             Resultados Comprovados
@@ -118,16 +176,12 @@ export const TestimonialsSection = () => {
             </span>
           </h3>
 
-          <Carousel opts={{ align: 'start', loop: true }}>
+          <Carousel opts={{ align: 'start', loop: false }}>
             <CarouselContent>
-              {youtubeVideos.map((v, i) => (
+              {videoTestimonials.map((v, i) => (
                 <CarouselItem key={i} className='basis-[280px]'>
-                  <div className='h-[480px] relative'>
-                    <CleanYouTubeEmbed videoId={v.id} />
-                    <div className='absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-4'>
-                      <h4 className='text-white font-bold text-lg'>{v.name}</h4>
-                      <p className='text-white/90 text-sm'>{v.role}</p>
-                    </div>
+                  <div className='h-[480px]'>
+                    <VideoStoryCard {...v} />
                   </div>
                 </CarouselItem>
               ))}
