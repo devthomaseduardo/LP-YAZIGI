@@ -1,4 +1,29 @@
-# Logs
+# ============================================
+# 📁 NODE / NEXT.JS BASE
+# ============================================
+node_modules
+.npm
+.pnpm
+.cache
+.next
+out
+dist
+build
+coverage
+
+# ============================================
+# 🧱 ENVIRONMENTS & CONFIG
+# ============================================
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local
+
+# ============================================
+# ⚙️ LOGS & DEBUG FILES
+# ============================================
 logs
 *.log
 npm-debug.log*
@@ -6,23 +31,65 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+debug/
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# ============================================
+# 🧠 SYSTEM & EDITOR CONFIGS
+# ============================================
+.DS_Store
+Thumbs.db
+.idea/
 .vscode/*
 !.vscode/extensions.json
-.idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+*.bak
+*.tmp
 
-# Ignore large local video assets (use storage or Git LFS instead)
-/src/assets/videos/
-/public/videos/
+# ============================================
+# 🧩 DEPLOY & CI/CD
+# ============================================
+.vercel
+.env.vercel
+.next/cache
+firebase-debug.log
+functions/lib/
+functions/node_modules/
+
+# ============================================
+# 🎨 DESIGN / MEDIA (grandes ou brutos)
+# ============================================
+# Ignora fontes e vídeos pesados (usar CDN, Supabase ou YouTube)
+src/assets/videos/
+public/videos/
+src/assets/raw/
+src/assets/originals/
+
+# Mantém imagens otimizadas e ícones
+!src/assets/images/
+!public/images/
+!public/favicon.ico
+!public/og-image.png
+
+# ============================================
+# 🔒 GIT & VERSIONAMENTO
+# ============================================
+.gitignore
+.gitmodules
+.gitlab-ci.yml
+*.orig
+
+# ============================================
+# 📦 BUILD TOOLS & TEMP FILES
+# ============================================
+*.pid
+*.seed
+*.pid.lock
+*.tsbuildinfo
+.cache-loader
+.cache/
+tmp/
+temp/
