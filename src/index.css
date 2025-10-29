@@ -158,3 +158,24 @@ html {
     transform: translateY(0);
   }
 }
+/* Bloqueia seleção de texto em toda a página */
+body {
+  -webkit-user-select: none; /* Chrome, Safari, Opera */
+  -moz-user-select: none;    /* Firefox */
+  -ms-user-select: none;     /* IE/Edge */
+  user-select: none;         /* Padrão */
+}
+
+/* Bloqueia arrastar imagens */
+img {
+  -webkit-user-drag: none; /* Chrome, Safari */
+  -khtml-user-drag: none;  /* Konqueror */
+  -moz-user-drag: none;    /* Firefox */
+  -o-user-drag: none;      /* Opera */
+  user-drag: none;         /* Padrão */
+}
+
+/* Mantém botões e links interativos (permitindo clique) */
+button, a {
+  user-select: auto;        /* Permite selecionar texto dentro de botões e links se necessário */
+}
