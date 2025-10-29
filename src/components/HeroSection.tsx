@@ -39,25 +39,31 @@ export const HeroSection = () => {
     )
   }
 
+  const handleScrollToCourses = () => {
+    const section = document.getElementById('cursos')
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  }
+
   const current = phrases[index]
 
   return (
     <section className='relative flex items-center justify-center min-h-[92vh] overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90'>
-      {/* Background Image with Overlay - Responsivo */}
+      {/* Background */}
       <div
         className='absolute inset-0 bg-cover bg-center opacity-20'
         style={{ backgroundImage: `url(${heroImage})` }}
       />
 
-      {/* Decorative Elements - Responsivo */}
+      {/* Blur Effects */}
       <div className='absolute top-10 md:top-20 right-5 md:right-10 w-48 h-48 md:w-72 md:h-72 bg-accent/10 rounded-full blur-3xl' />
       <div className='absolute bottom-10 md:bottom-20 left-5 md:left-10 w-56 h-56 md:w-96 md:h-96 bg-cyan/10 rounded-full blur-3xl' />
 
-      {/* Content - Responsivo */}
+      {/* Content */}
       <div className='relative z-10 container px-4 md:px-6 py-16 md:py-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl'>
-        {/* Left Side - Text Content */}
+        {/* Left Side */}
         <div className='text-white space-y-6 md:space-y-8'>
-          {/* Logo Badge - Responsivo */}
           <div className='flex items-center gap-3 md:gap-4'>
             <img
               src={logo}
@@ -74,13 +80,10 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Main Headline - Responsivo e focado em conversão */}
           <div>
             <h2 className='text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight'>
               Sua Voz Merece Ser Ouvida no Mundo Inteiro
             </h2>
-
-            {/* Animated Phrases - Responsivo */}
             <div className='relative h-12 md:h-16 overflow-hidden mb-4 md:mb-6'>
               {phrases.map((phrase, i) => (
                 <span
@@ -97,13 +100,11 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Subtitle - Responsivo e focado em conversão */}
           <p className='text-base md:text-xl text-white/90 leading-relaxed max-w-xl'>
             Aprenda inglês e espanhol com a metodologia que transforma vidas há
             75 anos. Do primeiro contato à fluência internacional comprovada.
           </p>
 
-          {/* Trust Badges - Responsivo */}
           <div className='flex flex-wrap gap-3 md:gap-6 items-center text-white/90'>
             <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full text-sm md:text-base'>
               <Award className='h-4 w-4 md:h-5 md:w-5 text-accent' />
@@ -119,7 +120,7 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* CTA Buttons - Responsivo e focado em conversão */}
+          {/* CTA Buttons */}
           <div className='flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4'>
             <Button
               size='lg'
@@ -129,26 +130,24 @@ export const HeroSection = () => {
               <IoLogoWhatsapp className='mr-2 h-5 w-5 md:h-6 md:w-6' />
               Começar Agora Grátis
             </Button>
+
             <Button
               size='lg'
               variant='outline'
-              onClick={() =>
-                document
-                  .getElementById('cursos')
-                  ?.scrollIntoView({ behavior: 'smooth' })
-              }
+              onClick={handleScrollToCourses}
               className='border-2 border-white text-white hover:bg-white hover:text-primary text-base md:text-lg px-6 md:px-8 py-5 md:py-6 rounded-full backdrop-blur-sm bg-white/10 hover:scale-105 transition-all font-bold w-full sm:w-auto'
             >
               <Play className='mr-2 h-4 w-4 md:h-5 md:w-5' />
               Ver Cursos
             </Button>
           </div>
+
           <p className='text-xs md:text-sm text-white/70 mt-2'>
             Teste grátis • Sem compromisso • Resposta em minutos
           </p>
         </div>
 
-        {/* Right Side - 75 Anos Logo - Responsivo */}
+        {/* Right Side */}
         <div className='hidden lg:flex items-center justify-center'>
           <img
             src={logo75anos}

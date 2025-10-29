@@ -11,25 +11,19 @@ import { Footer } from '@/components/Footer'
 import { FloatingWhatsApp } from '@/components/FloatingWhatsApp'
 import { ImageCarousel } from '@/components/ImageCarousel'
 
-
-
 const Index = () => {
   return (
-    <div className='min-h-screen'>
+    <div className='min-h-screen flex flex-col'>
       <AreaDoAlunoButton />
-       <FloatingWhatsApp />
+      <FloatingWhatsApp />
       <HeroSection />
-   
-
       <BenefitsSection />
-         
-  <ImageCarousel />
-
       <AudienceCards />
+       <ImageCarousel />
       <TestimonialsSection />
       <CoursesSection />
-      <GallerySection />
       <DiagnosticSection />
+      <GallerySection />
       <CTASection />
       <Footer />
     </div>

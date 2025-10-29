@@ -15,7 +15,7 @@ const benefits = [
     title: 'Speaking From Day 1',
     titlePt: 'Conversação Desde o Dia 1',
     description:
-      'Metodologia única que estimula o pensamento crítico e coloca o aluno no centro do seu aprendizado. Conversação desde a primeira aula para aprender ainda mais rápido.', // Novo texto
+      'Metodologia única que estimula o pensamento crítico e coloca o aluno no centro do seu aprendizado. Conversação desde a primeira aula para aprender ainda mais rápido e de forma eficaz.', // Texto padronizado
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -24,7 +24,7 @@ const benefits = [
     title: 'Monitored Progress',
     titlePt: 'Progresso Monitorado',
     description:
-      'Corpo docente altamente qualificado, que vai muito além do papel de instrutores. São verdadeiros educadores dedicados a proporcionar uma experiência completa e significativa.', // Novo texto
+      'Corpo docente altamente qualificado, que vai muito além do papel de instrutores. São verdadeiros educadores dedicados a proporcionar uma experiência completa e significativa para o aluno.', // Texto padronizado
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -33,7 +33,7 @@ const benefits = [
     title: 'Safe & Fun Environment',
     titlePt: 'Ambiente Lúdico e Seguro',
     description:
-      'Crianças aprendem inglês de forma leve e divertida, a partir dos 3 anos, em um ambiente seguro.', // Novo texto
+      'Crianças aprendem inglês de forma leve e divertida, a partir dos 3 anos, em um ambiente totalmente seguro e estimulante para o seu desenvolvimento.', // Texto padronizado
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   },
@@ -42,7 +42,7 @@ const benefits = [
     title: 'Exclusive Collections',
     titlePt: 'Coleções Exclusivas',
     description:
-      'Material didático inovador, adaptado à faixa etária e ao estágio de desenvolvimento',
+      'Material didático inovador e cuidadosamente adaptado à faixa etária e ao estágio de desenvolvimento de cada aluno, garantindo aprendizado contínuo.', // Texto padronizado
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -51,7 +51,7 @@ const benefits = [
     title: 'International Exams',
     titlePt: 'Exames Internacionais',
     description:
-      'Exames Pearson que comprovam sua fluência e garantem sua comunicação global',
+      'Prepara para exames Pearson que comprovam sua fluência e garantem sua comunicação global, abrindo portas para oportunidades em todo o mundo.', // Texto padronizado
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -60,7 +60,7 @@ const benefits = [
     title: 'Live & Flexible Classes',
     titlePt: 'Aulas Ao Vivo & Flexíveis',
     description:
-      'Aulas presenciais ou online com a excelência que só o Yázigi oferece',
+      'Aulas presenciais ou online com a excelência e flexibilidade que só o Yázigi oferece, adaptando-se à sua rotina e necessidades de aprendizado.', // Texto padronizado
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   }
@@ -108,7 +108,7 @@ export const BenefitsSection = () => {
                 className='group relative'
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2'>
+                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'> {/* Adicionado h-full aqui */}
                   {/* Gradient overlay on hover */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -125,7 +125,7 @@ export const BenefitsSection = () => {
                     } to-transparent rounded-bl-full`}
                   />
 
-                  <div className='relative p-8 flex flex-col h-full'>
+                  <div className='relative p-8 flex flex-col h-full'> {/* flex-col h-full já está aqui */}
                     {/* Icon with fixed style (hover removed) */}
                     <div className='mb-6 relative'>
                       <div
@@ -143,16 +143,15 @@ export const BenefitsSection = () => {
                             ? 'bg-gradient-to-br from-primary to-primary/80'
                             : benefit.color === 'accent'
                             ? 'bg-gradient-to-br from-accent to-accent/80'
-                            : 'bg-gradient-to-br from-cyan to-cyan/80'
+                            : 'bg-cyan/80'
                         } flex items-center justify-center shadow-lg transition-all duration-500`}
-                        // Classes de hover (scale e rotate) removidas aqui
                       >
                         <Icon className='h-8 w-8 text-white' />
                       </div>
                     </div>
 
                     {/* Text content */}
-                    <div className='flex-1'>
+                    <div className='flex-1'> {/* flex-1 já está aqui, garantindo que ocupe o espaço */}
                       <h3 className='text-2xl font-bold mb-2 text-black'>
                         {benefit.titlePt}
                       </h3>

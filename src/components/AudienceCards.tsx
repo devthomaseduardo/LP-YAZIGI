@@ -8,7 +8,7 @@ const audiences = [
     title: 'Yázigi Travel',
     subtitle: 'Intercâmbio e Aventura',
     description:
-      'Explore o mundo com nossos programas de intercâmbio exclusivos. Segurança, acompanhamento e imersão cultural completa para uma fluência real.',
+      'Explore o mundo com nossos programas exclusivos de intercâmbio. Oferecemos segurança, acompanhamento completo e uma imersão cultural profunda para uma fluência autêntica e inesquecível. Viaje e aprenda conosco.', // Texto padronizado
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -17,7 +17,7 @@ const audiences = [
     title: 'Yázigi for Business',
     subtitle: 'Inglês Corporativo',
     description:
-      'Soluções personalizadas para o mundo corporativo. Desenvolva as habilidades de comunicação da sua equipe e impulsione a competitividade global da sua empresa.',
+      'Desenvolva as habilidades de comunicação global da sua equipe com nossas soluções corporativas personalizadas. Aumente a competitividade e expanda mercados, impulsionando o crescimento internacional da sua empresa.', // Texto padronizado
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -26,7 +26,7 @@ const audiences = [
     title: 'Yázigi for Schools',
     subtitle: 'Parceria Educacional',
     description:
-      'Traga a excelência Yázigi para sua escola regular. Metodologia e material didático de ponta, preparando alunos para o futuro global dentro da sala de aula.',
+      'Leve a excelência Yázigi para sua escola regular. Oferecemos metodologia e material didático de ponta, preparando seus alunos para um futuro global diretamente na sala de aula. Uma parceria transformadora.', // Texto padronizado
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   }
@@ -34,13 +34,9 @@ const audiences = [
 
 export const AudienceCards = () => {
   const handleWhatsAppClick = (audienceIndex: number) => {
-    // Mensagens ajustadas para cada novo foco
     const messages = [
-      // Yázigi Travel (Index 0)
       'Olá!%20Tenho%20interesse%20em%20saber%20mais%20sobre%20os%20programas%20de%20Intercâmbio%20Yázigi%20Travel%20e%20como%20posso%20participar.',
-      // Yázigi for Business (Index 1)
       'Olá!%20Busco%20soluções%20de%20Inglês%20Corporativo%20personalizadas%20do%20Yázigi%20for%20Business%20para%20a%20minha%20empresa.',
-      // Yázigi for Schools (Index 2)
       'Olá!%20Gostaria%20de%20conhecer%20a%20proposta%20do%20Yázigi%20for%20Schools%20para%20parceria%20e%20implementação%20na%20minha%20escola.'
     ]
 
@@ -82,7 +78,7 @@ export const AudienceCards = () => {
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 {/* Creative card with diagonal gradient */}
-                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2'>
+                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'> {/* Adicionado h-full para garantir que todos os wrappers tenham altura total na grade */}
                   {/* Diagonal gradient overlay */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${audience.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -119,14 +115,13 @@ export const AudienceCards = () => {
                             ? 'bg-gradient-to-br from-accent to-accent/80'
                             : 'bg-gradient-to-br from-cyan to-cyan/80'
                         } flex items-center justify-center shadow-lg transition-all duration-500`}
-                        // CLASSES REMOVIDAS AQUI: group-hover:scale-110 group-hover:rotate-6
                       >
                         <Icon className='h-8 w-8 text-white' />
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className='flex-1'>
+                    <div className='flex-1'> {/* flex-1 garante que este bloco de texto ocupe o espaço restante */}
                       <h3 className='text-2xl font-bold mb-2 group-hover:text-primary transition-colors'>
                         {audience.title}
                       </h3>
