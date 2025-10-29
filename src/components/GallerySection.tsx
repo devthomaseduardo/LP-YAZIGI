@@ -63,7 +63,7 @@ const galleryItems = [
 
 export const GallerySection = () => {
   return (
-    <section className='py-20 bg-gradient-to-b from-background to-muted'>
+    <section className='py-20 bg-gradient-to-b from-background to-muted overflow-hidden'>
       <div className='container px-4'>
         {/* TÍTULO */}
         <div className='text-center mb-16 animate-fade-in'>
@@ -77,18 +77,28 @@ export const GallerySection = () => {
         </div>
 
         {/* GALERIA */}
-        <div className='max-w-6xl mx-auto'>
-          <Carousel opts={{ align: 'start', loop: true }} className='w-full'>
+        <div className='max-w-7xl mx-auto relative'>
+          <Carousel
+            opts={{
+              align: 'start',
+              loop: true
+            }}
+            className='w-full'
+          >
             <CarouselContent>
               {galleryItems.map((item, index) => (
-                <CarouselItem key={index} className='md:basis-1/2 lg:basis-1/2'>
+                <CarouselItem
+                  key={index}
+                  className='basis-full sm:basis-1/2 lg:basis-1/3 transition-all duration-500'
+                >
                   <div className='edu-card h-full overflow-hidden group'>
-                    <div className='relative aspect-[4/5] overflow-hidden rounded-2xl shadow-[0_8px_30px_rgb(128,0,255,0.25)]'>
+                    <div className='relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_8px_30px_rgba(128,0,255,0.25)]'>
                       {/* Imagem */}
                       <img
                         src={item.src}
                         alt={item.alt}
-                        className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
+                        className='w-full h-full object-cover transition-transform duration-700 group-hover:scale-105'
+                        loading='lazy'
                       />
 
                       {/* Overlay */}
@@ -106,6 +116,7 @@ export const GallerySection = () => {
               ))}
             </CarouselContent>
 
+            {/* Setas */}
             <CarouselPrevious className='hidden md:flex -left-12' />
             <CarouselNext className='hidden md:flex -right-12' />
           </Carousel>
