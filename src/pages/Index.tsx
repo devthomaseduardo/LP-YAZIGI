@@ -1,6 +1,5 @@
 import { AreaDoAlunoButton } from '@/components/AreaDoAlunoButton'
 import { HeroSection } from '@/components/HeroSection'
-import { EnrollmentModal } from '@/components/EnrollmentModal'
 import { AudienceCards } from '@/components/AudienceCards'
 import { BenefitsSection } from '@/components/BenefitsSection'
 import { DiagnosticSection } from '@/components/DiagnosticSection'
@@ -18,7 +17,6 @@ const Index = () => {
   return (
     <div className='min-h-screen'>
       <AreaDoAlunoButton />
-      <EnrollmentModal />
        <FloatingWhatsApp />
       <HeroSection />
    
