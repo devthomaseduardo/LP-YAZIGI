@@ -34,7 +34,7 @@ export const HeroSection = () => {
 
   const handleWhatsAppClick = () => {
     window.open(
-      'https://wa.me/5519999999999?text=Olá!%20Quero%20começar%20minha%20jornada%20rumo%20à%20fluência%20global%20no%20Yázigi%20Swiss%20Park!',
+      'https://wa.me/5519991394250?text=Olá!%20Quero%20começar%20minha%20jornada%20rumo%20à%20fluência%20global%20no%20Yázigi%20Swiss%20Park!',
       '_blank'
     )
   }
