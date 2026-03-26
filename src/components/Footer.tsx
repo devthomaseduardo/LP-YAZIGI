@@ -4,9 +4,8 @@ import {
   Phone,
   Instagram,
   Facebook,
-  Linkedin,
-Youtube, ArrowUp
-
+  Youtube,
+  ArrowUp,
 } from 'lucide-react'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import logo75anos from '@/assets/logo-75anos.png'
@@ -23,7 +22,6 @@ export const Footer = () => {
     <footer className='bg-primary text-white'>
       <div className='container px-4 py-12'>
         <div className='grid md:grid-cols-4 gap-8'>
-          {/* Brand */}
           <div className='space-y-4'>
             <h3 className='text-2xl font-bold text-accent'>Yázigi</h3>
             <p className='text-white/80 text-sm'>Swiss Park, Campinas</p>
@@ -32,7 +30,6 @@ export const Footer = () => {
             </p>
           </div>
 
-          {/* Contato */}
           <div className='space-y-4'>
             <h4 className='font-bold text-lg mb-4'>Contato</h4>
             <div className='space-y-3 text-sm'>
@@ -65,7 +62,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Links Rápidos */}
           <div className='space-y-4'>
             <h4 className='font-bold text-lg mb-4'>Cursos</h4>
             <div className='space-y-2 text-sm'>
@@ -102,7 +98,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Redes Sociais */}
           <div className='space-y-4'>
             <h4 className='font-bold text-lg mb-4'>Redes Sociais</h4>
             <p className='text-white/80 text-sm mb-4'>
@@ -137,7 +132,6 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className='border-t border-white/10 mt-8 pt-8'>
           <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
             <div className='text-center md:text-left text-sm text-white/60'>
@@ -146,7 +140,6 @@ export const Footer = () => {
                 Parte da rede Yázigi - 75 anos de excelência em ensino de
                 idiomas
               </p>
-
             </div>
             <div className='flex items-center justify-center'>
               <img
@@ -158,17 +151,15 @@ export const Footer = () => {
           </div>
         </div>
       </div>
-{
-  /* Botão Voltar ao Topo */
-}
-<button
-  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-  className='fixed bottom-8 right-8 bg-accent hover:bg-accent/90 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
-  aria-label='Voltar ao topo'
->
-  <ArrowUp className='h-6 w-6' />
-</button>
 
+      <button
+        type='button'
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className='fixed bottom-8 right-8 bg-accent hover:bg-accent/90 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transition-all hover:scale-110 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2'
+        aria-label='Voltar ao topo'
+      >
+        <ArrowUp className='h-6 w-6' />
+      </button>
     </footer>
   )
 }

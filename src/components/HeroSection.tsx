@@ -50,19 +50,15 @@ export const HeroSection = () => {
 
   return (
     <section className='relative flex items-center justify-center min-h-[92vh] overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90'>
-      {/* Background */}
       <div
         className='absolute inset-0 bg-cover bg-center opacity-20'
         style={{ backgroundImage: `url(${heroImage})` }}
       />
 
-      {/* Blur Effects */}
       <div className='absolute top-10 md:top-20 right-5 md:right-10 w-48 h-48 md:w-72 md:h-72 bg-accent/10 rounded-full blur-3xl' />
       <div className='absolute bottom-10 md:bottom-20 left-5 md:left-10 w-56 h-56 md:w-96 md:h-96 bg-cyan/10 rounded-full blur-3xl' />
 
-      {/* Content */}
       <div className='relative z-10 container px-4 md:px-6 py-16 md:py-20 grid lg:grid-cols-2 gap-8 md:gap-12 items-center max-w-7xl'>
-        {/* Left Side */}
         <div className='text-white space-y-6 md:space-y-8'>
           <div className='flex items-center gap-3 md:gap-4'>
             <img
@@ -120,7 +116,6 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* CTA Buttons */}
           <div className='flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4'>
             <Button
               size='lg'
@@ -147,7 +142,6 @@ export const HeroSection = () => {
           </p>
         </div>
 
-        {/* Right Side */}
         <div className='hidden lg:flex items-center justify-center'>
           <img
             src={logo75anos}

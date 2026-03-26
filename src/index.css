@@ -2,18 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
   :root {
-    /* Yázigi Brand Colors */
     --yazigi-purple: 270 70% 45%;
     --yazigi-lime: 75 80% 55%;
     --yazigi-cyan: 190 75% 65%;
-    
-    /* Base Colors - Clean White Theme */
+
     --background: 0 0% 100%;
     --foreground: 240 10% 15%;
 
@@ -23,24 +17,19 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 15%;
 
-    /* Primary = Yázigi Purple for CTAs */
     --primary: 270 70% 45%;
     --primary-foreground: 0 0% 100%;
     --primary-hover: 270 70% 38%;
 
-    /* Secondary = Subtle Gray */
     --secondary: 240 5% 96%;
     --secondary-foreground: 240 10% 15%;
 
-    /* Muted = Light Background for Sections */
     --muted: 240 5% 98%;
     --muted-foreground: 240 8% 45%;
 
-    /* Accent = Lime for Highlights */
     --accent: 75 80% 55%;
     --accent-foreground: 240 10% 15%;
 
-    /* Cyan for Dividers and Subtle Backgrounds */
     --cyan: 190 75% 65%;
     --cyan-light: 190 75% 95%;
 
@@ -53,15 +42,12 @@ All colors MUST be HSL.
 
     --radius: 1rem;
 
-    /* Gradients */
     --gradient-hero: linear-gradient(135deg, hsl(270 70% 45% / 0.95), hsl(270 70% 35% / 0.9));
     --gradient-accent: linear-gradient(135deg, hsl(75 80% 55%), hsl(190 75% 65%));
-    
-    /* Shadows */
+
     --shadow-card: 0 4px 20px hsl(240 10% 15% / 0.08);
     --shadow-card-hover: 0 8px 30px hsl(240 10% 15% / 0.12);
-    
-    /* Transitions */
+
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
@@ -112,42 +98,37 @@ All colors MUST be HSL.
   body {
     @apply bg-background text-foreground font-poppins;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold;
   }
 }
 
 @layer components {
-  /* Wavy Path Lines inspired by Yázigi Logo */
   .path-line {
     @apply absolute pointer-events-none;
   }
-  
-  /* Educational Card Style */
+
   .edu-card {
     @apply bg-card rounded-2xl p-8 transition-all duration-300;
     box-shadow: var(--shadow-card);
   }
-  
+
   .edu-card:hover {
     box-shadow: var(--shadow-card-hover);
     @apply -translate-y-1;
   }
-  
-  /* Icon Badge */
+
   .icon-badge {
     @apply w-14 h-14 rounded-xl flex items-center justify-center;
     background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cyan)));
   }
 }
 
-/* Smooth scroll */
 html {
   scroll-behavior: smooth;
 }
 
-/* Additional animations */
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -158,24 +139,22 @@ html {
     transform: translateY(0);
   }
 }
-/* Bloqueia seleção de texto em toda a página */
+
 body {
-  -webkit-user-select: none; /* Chrome, Safari, Opera */
-  -moz-user-select: none;    /* Firefox */
-  -ms-user-select: none;     /* IE/Edge */
-  user-select: none;         /* Padrão */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-/* Bloqueia arrastar imagens */
 img {
-  -webkit-user-drag: none; /* Chrome, Safari */
-  -khtml-user-drag: none;  /* Konqueror */
-  -moz-user-drag: none;    /* Firefox */
-  -o-user-drag: none;      /* Opera */
-  user-drag: none;         /* Padrão */
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
-/* Mantém botões e links interativos (permitindo clique) */
 button, a {
-  user-select: auto;        /* Permite selecionar texto dentro de botões e links se necessário */
+  user-select: auto;
 }

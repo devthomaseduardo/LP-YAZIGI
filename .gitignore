@@ -1,6 +1,3 @@
-# ============================================
-# 📁 NODE / NEXT.JS BASE
-# ============================================
 node_modules
 .npm
 .pnpm
@@ -11,9 +8,6 @@ dist
 build
 coverage
 
-# ============================================
-# 🧱 ENVIRONMENTS & CONFIG
-# ============================================
 .env
 .env.local
 .env.development.local
@@ -21,9 +15,6 @@ coverage
 .env.production.local
 *.local
 
-# ============================================
-# ⚙️ LOGS & DEBUG FILES
-# ============================================
 logs
 *.log
 npm-debug.log*
@@ -33,9 +24,6 @@ pnpm-debug.log*
 lerna-debug.log*
 debug/
 
-# ============================================
-# 🧠 SYSTEM & EDITOR CONFIGS
-# ============================================
 .DS_Store
 Thumbs.db
 .idea/
@@ -49,9 +37,6 @@ Thumbs.db
 *.bak
 *.tmp
 
-# ============================================
-# 🧩 DEPLOY & CI/CD
-# ============================================
 .vercel
 .env.vercel
 .next/cache
@@ -59,27 +44,13 @@ firebase-debug.log
 functions/lib/
 functions/node_modules/
 
-# ============================================
-# 🎨 DESIGN / MEDIA (grandes ou brutos)
-# ============================================
-
-# Mantém imagens otimizadas e ícones
 !src/assets/images/
 !public/images/
 !public/favicon.ico
 !public/og-image.png
 
-# ============================================
-# 🔒 GIT & VERSIONAMENTO
-# ============================================
-.gitignore
-.gitmodules
-.gitlab-ci.yml
 *.orig
 
-# ============================================
-# 📦 BUILD TOOLS & TEMP FILES
-# ============================================
 *.pid
 *.seed
 *.pid.lock

@@ -71,8 +71,7 @@ export const DiagnosticSection = () => {
               <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors text-left'>
                 <div className='flex items-center gap-4 mb-3'>
                   <div className='w-12 h-12 rounded-xl bg-accent/30 flex items-center justify-center'>
-                    <BookOpenCheck className='h-6 w-6 text-white' />{' '}
-                    {/* Ícone alterado */}
+                    <BookOpenCheck className='h-6 w-6 text-white' />
                   </div>
                   <div>
                     <h3 className='font-semibold text-white'>
@@ -89,8 +88,7 @@ export const DiagnosticSection = () => {
               <div className='bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20 hover:bg-white/15 transition-colors text-left'>
                 <div className='flex items-center gap-4 mb-3'>
                   <div className='w-12 h-12 rounded-xl bg-cyan/30 flex items-center justify-center'>
-                    <Globe className='h-6 w-6 text-white' />{' '}
-                    {/* Ícone alterado */}
+                    <Globe className='h-6 w-6 text-white' />
                   </div>
                   <div>
                     <h3 className='font-semibold text-white'>

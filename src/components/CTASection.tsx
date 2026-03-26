@@ -12,15 +12,12 @@ export const CTASection = () => {
 
   return (
     <section className='relative py-28 bg-background overflow-hidden'>
-      {/* Circular background decorations */}
       <div className='absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl' />
       <div className='absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl' />
       <div className='absolute top-1/3 right-1/3 w-72 h-72 bg-cyan/10 rounded-full blur-3xl' />
 
-      {/* Subtle gradient overlay */}
       <div className='absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-cyan/5' />
 
-      {/* Wavy lines for motion effect */}
       <svg
         className='absolute inset-0 w-full h-full opacity-10'
         xmlns='http://www.w3.org/2000/svg'
@@ -67,7 +64,6 @@ export const CTASection = () => {
             Falar no WhatsApp Agora
           </Button>
 
-          {/* Contact info */}
           <div className='grid md:grid-cols-2 gap-6 max-w-2xl mx-auto mt-12'>
             <div className='flex items-center justify-center gap-3 text-muted-foreground hover:text-primary transition-colors'>
               <MapPin className='h-5 w-5' />

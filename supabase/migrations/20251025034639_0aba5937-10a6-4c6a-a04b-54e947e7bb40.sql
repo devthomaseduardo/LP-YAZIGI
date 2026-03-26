@@ -1,4 +1,3 @@
--- Create leads table
 CREATE TABLE IF NOT EXISTS public.leads (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
@@ -10,7 +9,6 @@ CREATE TABLE IF NOT EXISTS public.leads (
   metadata JSONB
 );
 
--- Create diagnostic_results table
 CREATE TABLE IF NOT EXISTS public.diagnostic_results (
   id UUID NOT NULL DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
@@ -27,22 +25,19 @@ CREATE TABLE IF NOT EXISTS public.diagnostic_results (
   class_preference TEXT NOT NULL
 );
 
--- Enable Row Level Security
 ALTER TABLE public.leads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.diagnostic_results ENABLE ROW LEVEL SECURITY;
 
--- Create policies for public insert (landing page forms)
-CREATE POLICY "Anyone can insert leads" 
-ON public.leads 
-FOR INSERT 
+CREATE POLICY "Anyone can insert leads"
+ON public.leads
+FOR INSERT
 WITH CHECK (true);
 
-CREATE POLICY "Anyone can insert diagnostic results" 
-ON public.diagnostic_results 
-FOR INSERT 
+CREATE POLICY "Anyone can insert diagnostic results"
+ON public.diagnostic_results
+FOR INSERT
 WITH CHECK (true);
 
--- Create indexes for better performance
 CREATE INDEX IF NOT EXISTS idx_leads_created_at ON public.leads(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_leads_phone ON public.leads(phone);
 CREATE INDEX IF NOT EXISTS idx_diagnostic_created_at ON public.diagnostic_results(created_at DESC);

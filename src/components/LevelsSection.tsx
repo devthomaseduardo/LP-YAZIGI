@@ -33,7 +33,6 @@ export const FeatureCards = () => {
           key={index}
           className='relative bg-[#c0ea41] rounded-2xl p-6 shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden'
         >
-          {/* Decorative corner element */}
           <div
             className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${
               feature.color === 'primary'

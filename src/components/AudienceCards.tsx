@@ -49,7 +49,6 @@ export const AudienceCards = () => {
 
   return (
     <section className='py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'>
-      {/* Geometric shapes background */}
       <div className='absolute top-10 right-20 w-64 h-64 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl' />
       <div className='absolute bottom-10 left-20 w-72 h-72 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl' />
 
@@ -77,14 +76,11 @@ export const AudienceCards = () => {
                 className='group relative'
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Creative card with diagonal gradient */}
-                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'> {/* Adicionado h-full para garantir que todos os wrappers tenham altura total na grade */}
-                  {/* Diagonal gradient overlay */}
+                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'>
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${audience.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
 
-                  {/* Decorative corner element */}
                   <div
                     className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${
                       audience.color === 'primary'
@@ -96,7 +92,6 @@ export const AudienceCards = () => {
                   />
 
                   <div className='relative p-8 flex flex-col h-full'>
-                    {/* Icon with creative positioning */}
                     <div className='mb-6 relative'>
                       <div
                         className={`absolute -top-2 -left-2 w-20 h-20 rounded-2xl ${
@@ -120,8 +115,7 @@ export const AudienceCards = () => {
                       </div>
                     </div>
 
-                    {/* Content */}
-                    <div className='flex-1'> {/* flex-1 garante que este bloco de texto ocupe o espaço restante */}
+                    <div className='flex-1'>
                       <h3 className='text-2xl font-bold mb-2 group-hover:text-primary transition-colors'>
                         {audience.title}
                       </h3>
@@ -141,7 +135,6 @@ export const AudienceCards = () => {
                       </p>
                     </div>
 
-                    {/* CTA Button */}
                     <Button
                       variant='outline'
                       className='w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 rounded-full'
@@ -153,7 +146,6 @@ export const AudienceCards = () => {
                   </div>
                 </div>
 
-                {/* Floating decoration */}
                 <div
                   className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full ${
                     audience.color === 'primary'

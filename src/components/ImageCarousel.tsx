@@ -18,14 +18,13 @@ const images = [
 export function ImageCarousel () {
   const plugin = useRef(
     Autoplay({
-      // Atraso aumentado para 10 segundos (10000 ms)
       delay: 10000,
       stopOnInteraction: false
     })
   )
 
   return (
-    <div className='w-full overflow-hidden ]'>
+    <div className='w-full overflow-hidden'>
       <Carousel
         opts={{ loop: true }}
         plugins={[plugin.current]}

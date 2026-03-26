@@ -76,7 +76,6 @@ export const BenefitsSection = () => {
 
   return (
     <section className='py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'>
-      {/* Background shapes */}
       <div className='absolute top-10 right-20 w-64 h-64 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl' />
       <div className='absolute bottom-10 left-20 w-72 h-72 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl' />
 
@@ -108,13 +107,11 @@ export const BenefitsSection = () => {
                 className='group relative'
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'> {/* Adicionado h-full aqui */}
-                  {/* Gradient overlay on hover */}
+                <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-full'>
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
 
-                  {/* Decorative corner element */}
                   <div
                     className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${
                       benefit.color === 'primary'
@@ -125,8 +122,7 @@ export const BenefitsSection = () => {
                     } to-transparent rounded-bl-full`}
                   />
 
-                  <div className='relative p-8 flex flex-col h-full'> {/* flex-col h-full já está aqui */}
-                    {/* Icon with fixed style (hover removed) */}
+                  <div className='relative p-8 flex flex-col h-full'>
                     <div className='mb-6 relative'>
                       <div
                         className={`absolute -top-2 -left-2 w-20 h-20 rounded-2xl ${
@@ -150,8 +146,7 @@ export const BenefitsSection = () => {
                       </div>
                     </div>
 
-                    {/* Text content */}
-                    <div className='flex-1'> {/* flex-1 já está aqui, garantindo que ocupe o espaço */}
+                    <div className='flex-1'>
                       <h3 className='text-2xl font-bold mb-2 text-black'>
                         {benefit.titlePt}
                       </h3>
@@ -182,7 +177,6 @@ export const BenefitsSection = () => {
                   </div>
                 </div>
 
-                {/* Floating decoration */}
                 <div
                   className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full ${
                     benefit.color === 'primary'

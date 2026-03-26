@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/carousel'
 import { Button } from '@/components/ui/button'
 
-// ====== DADOS ======
 const localFallbackVideoTestimonials = [
   {
     name: 'Nalva',
@@ -40,7 +39,6 @@ const localFallbackVideoTestimonials = [
   }
 ]
 
-// Mantive seus depoimentos de texto
 const testimonials = [
   {
     name: 'Maria Silva',
@@ -70,10 +68,8 @@ const testimonials = [
       'A metodologia é prática e ajuda a falar inglês com confiança desde o início.',
     rating: 5
   }
-  // ...adicione os demais depoimentos conforme o original
 ]
 
-// ====== COMPONENTE CARD DE VÍDEO ======
 const VideoStoryCard = ({
   name,
   role,
@@ -222,7 +218,6 @@ const VideoStoryCard = ({
   )
 }
 
-// ====== SECTION DEPOIMENTOS ======
 export const TestimonialsSection = () => {
   const { data: videos } = useVideos()
   const videoTestimonials =
@@ -234,7 +229,6 @@ export const TestimonialsSection = () => {
         }))
       : localFallbackVideoTestimonials
 
-  // Estado para controle da bolinha ativa
   const [currentSlide, setCurrentSlide] = useState(0)
   const carouselRef = useRef<HTMLDivElement>(null)
 
@@ -244,7 +238,6 @@ export const TestimonialsSection = () => {
       className='py-16 md:py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'
     >
       <div className='container px-4 md:px-6 relative z-10'>
-        {/* TÍTULO */}
         <div className='text-center mb-12 md:mb-16'>
           <h2 className='text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight px-4'>
             <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
@@ -257,7 +250,6 @@ export const TestimonialsSection = () => {
           </p>
         </div>
 
-        {/* CARROSSEL DE TEXTO */}
         <div className='max-w-6xl mx-auto mb-16'>
           <Carousel
             opts={{ align: 'start', loop: true }}
@@ -291,7 +283,6 @@ export const TestimonialsSection = () => {
           </Carousel>
         </div>
 
-        {/* CARROSSEL DE VÍDEOS */}
         <div className='mt-16 md:mt-24'>
           <div className='text-center mb-12'>
             <h3 className='text-2xl md:text-4xl font-bold mb-4'>
@@ -331,7 +322,6 @@ export const TestimonialsSection = () => {
               </CarouselContent>
             </Carousel>
 
-            {/* BOLINHAS DE NAVEGAÇÃO */}
             <div className='flex justify-center mt-4 gap-2'>
               {videoTestimonials.map((_, idx) => (
                 <button

@@ -189,12 +189,10 @@ export const CoursesSection = () => {
 
   return (
     <section className='py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'>
-      {/* Background shapes */}
       <div className='absolute top-10 right-20 w-64 h-64 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl' />
       <div className='absolute bottom-10 left-20 w-72 h-72 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl' />
 
       <div className='container px-4 relative z-10'>
-        {/* Header */}
         <div className='text-center mb-16 animate-fade-in'>
           <div className='inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 via-accent/10 to-cyan/10 rounded-full mb-4'>
             <span className='text-black font-bold text-sm uppercase tracking-wide'>
@@ -210,19 +208,16 @@ export const CoursesSection = () => {
           </p>
         </div>
 
-        {/* Cards */}
         <div className='grid md:grid-cols-3 gap-8 max-w-7xl mx-auto'>
           {levels.map((level, index) => {
             const Icon = level.icon
             return (
               <div key={index} className='group relative'>
                 <div className='relative overflow-hidden rounded-3xl bg-card border-2 border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2'>
-                  {/* Gradient overlay */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-br ${level.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
                   />
 
-                  {/* Decorative corner */}
                   <div
                     className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${
                       level.color === 'primary'
@@ -234,7 +229,6 @@ export const CoursesSection = () => {
                   />
 
                   <div className='relative p-8 flex flex-col h-full'>
-                    {/* Icon */}
                     <div className='mb-6 relative'>
                       <div
                         className={`absolute -top-2 -left-2 w-20 h-20 rounded-2xl ${
@@ -258,7 +252,6 @@ export const CoursesSection = () => {
                       </div>
                     </div>
 
-                    {/* Content */}
                     <div className='flex-1'>
                       <h3 className='text-2xl font-bold mb-2 text-black'>
                         {level.titlePt}
@@ -270,7 +263,6 @@ export const CoursesSection = () => {
                         {level.description}
                       </p>
 
-                      {/* Accordions */}
                       <Accordion type="single" collapsible className="mb-4">
                         {level.highlights.map((highlight, idx) => (
                           <AccordionItem 
@@ -291,7 +283,6 @@ export const CoursesSection = () => {
                       </Accordion>
                     </div>
 
-                    {/* CTA Button */}
                     <Button
                       variant='outline'
                       className='w-full group-hover:bg-primary group-hover:text-white group-hover:border-primary transition-all duration-300 rounded-full'
@@ -303,7 +294,6 @@ export const CoursesSection = () => {
                   </div>
                 </div>
 
-                {/* Floating decoration */}
                 <div
                   className={`absolute -bottom-4 -right-4 w-24 h-24 rounded-full ${
                     level.color === 'primary'

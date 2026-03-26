@@ -15,7 +15,6 @@ const Admin = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    // Check authentication
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (!session) {
         navigate("/auth");
@@ -24,7 +23,6 @@ const Admin = () => {
       }
     });
 
-    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
       if (!session) {
         navigate("/auth");
@@ -53,7 +51,6 @@ const Admin = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
       <header className="bg-white border-b">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
@@ -74,7 +71,6 @@ const Admin = () => {
         </div>
       </header>
 
-      {/* Content */}
       <main className="container mx-auto px-4 py-8">
         <DashboardStats />
 

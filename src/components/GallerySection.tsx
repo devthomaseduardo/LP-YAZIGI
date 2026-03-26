@@ -9,7 +9,6 @@ import {
   CarouselPrevious
 } from '@/components/ui/carousel'
 
-// IMAGENS
 import brunoEMel from '@/assets/bruno-e-mel.png'
 import diogoCongratulations from '@/assets/Diogo-congratulations.png'
 import mariMegafashion from '@/assets/Mari-megafashion.png'
@@ -65,7 +64,6 @@ export const GallerySection = () => {
   return (
     <section className='py-20 bg-gradient-to-b from-background to-muted overflow-hidden'>
       <div className='container px-4'>
-        {/* TÍTULO */}
         <div className='text-center mb-16 animate-fade-in'>
           <h2 className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
             Vivência Yázigi
@@ -76,7 +74,6 @@ export const GallerySection = () => {
           </p>
         </div>
 
-        {/* GALERIA */}
         <div className='max-w-7xl mx-auto relative'>
           <Carousel
             opts={{
@@ -93,7 +90,6 @@ export const GallerySection = () => {
                 >
                   <div className='edu-card h-full overflow-hidden group'>
                     <div className='relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_8px_30px_rgba(128,0,255,0.25)]'>
-                      {/* Imagem */}
                       <img
                         src={item.src}
                         alt={item.alt}
@@ -101,7 +97,6 @@ export const GallerySection = () => {
                         loading='lazy'
                       />
 
-                      {/* Overlay */}
                       <div className='absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#6B21A8]/90 to-transparent p-6'>
                         <h3 className='text-white text-2xl font-bold mb-2'>
                           {item.title}
@@ -116,12 +111,10 @@ export const GallerySection = () => {
               ))}
             </CarouselContent>
 
-            {/* Setas */}
             <CarouselPrevious className='hidden md:flex -left-12' />
             <CarouselNext className='hidden md:flex -right-12' />
           </Carousel>
 
-          {/* Indicadores mobile */}
           <div className='flex justify-center gap-2 mt-8 md:hidden'>
             {galleryItems.map((_, index) => (
               <div key={index} className='w-2 h-2 rounded-full bg-primary/30' />
@@ -129,7 +122,6 @@ export const GallerySection = () => {
           </div>
         </div>
 
-        {/* CTA */}
         <div className='text-center mt-16'>
           <p className='text-lg text-muted-foreground mb-6'>
             Faça parte dessa escola que transforma sonhos em fluência.
