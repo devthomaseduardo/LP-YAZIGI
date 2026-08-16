@@ -46,8 +46,6 @@ export const HeroSection = () => {
     }
   }
 
-  const current = phrases[index]
-
   return (
     <section className='relative flex items-center justify-center min-h-[92vh] overflow-hidden bg-gradient-to-br from-primary via-primary/95 to-primary/90'>
       <div
@@ -135,7 +133,7 @@ export const HeroSection = () => {
               <Play className='mr-2 h-4 w-4 md:h-5 md:w-5' />
               Ver Cursos
             </Button>
-          </div </div>
+          </div>
 
           <p className='text-xs md:text-sm text-white/70 mt-2'>
             Teste grátis • Sem compromisso • Resposta em minutos
