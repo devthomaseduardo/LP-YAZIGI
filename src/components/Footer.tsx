@@ -26,7 +26,7 @@ export const Footer = () => {
             <h3 className='text-2xl font-bold text-accent'>Yázigi</h3>
             <p className='text-white/80 text-sm'>Swiss Park, Campinas</p>
             <p className='text-white/80 text-sm'>
-              Excelência em ensino de idiomas há 75 anos
+              Excelência em ensino de idiomas há 76 anos
             </p>
           </div>
 
@@ -135,16 +135,16 @@ export const Footer = () => {
         <div className='border-t border-white/10 mt-8 pt-8'>
           <div className='flex flex-col md:flex-row items-center justify-between gap-4'>
             <div className='text-center md:text-left text-sm text-white/60'>
-              <p>© 2025 Yázigi Swiss Park. Todos os direitos reservados.</p>
+              <p>© 2026 Yázigi Swiss Park. Todos os direitos reservados.</p>
               <p className='mt-2'>
-                Parte da rede Yázigi - 75 anos de excelência em ensino de
+                Parte da rede Yázigi - 76 anos de excelência em ensino de
                 idiomas
               </p>
             </div>
             <div className='flex items-center justify-center'>
               <img
                 src={logo75anos}
-                alt='Yázigi 75 Anos'
+                alt='Yázigi 76 Anos'
                 className='h-16 w-auto'
               />
             </div>

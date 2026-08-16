@@ -98,7 +98,7 @@ export const HeroSection = () => {
 
           <p className='text-base md:text-xl text-white/90 leading-relaxed max-w-xl'>
             Aprenda inglês e espanhol com a metodologia que transforma vidas há
-            75 anos. Do primeiro contato à fluência internacional comprovada.
+            76 anos. Do primeiro contato à fluência internacional comprovada.
           </p>
 
           <div className='flex flex-wrap gap-3 md:gap-6 items-center text-white/90'>
@@ -111,7 +111,7 @@ export const HeroSection = () => {
             <div className='flex items-center gap-2 bg-white/10 backdrop-blur-sm px-3 md:px-4 py-2 rounded-full text-sm md:text-base'>
               <Trophy className='h-4 w-4 md:h-5 md:w-5 text-accent' />
               <span className='text-xs md:text-sm font-medium'>
-                75 Anos de Excelência
+                76 Anos de Excelência
               </span>
             </div>
           </div>
@@ -135,7 +135,7 @@ export const HeroSection = () => {
               <Play className='mr-2 h-4 w-4 md:h-5 md:w-5' />
               Ver Cursos
             </Button>
-          </div>
+          </div </div>
 
           <p className='text-xs md:text-sm text-white/70 mt-2'>
             Teste grátis • Sem compromisso • Resposta em minutos
@@ -145,7 +145,7 @@ export const HeroSection = () => {
         <div className='hidden lg:flex items-center justify-center'>
           <img
             src={logo75anos}
-            alt='Yázigi 75 Anos'
+            alt='Yázigi 76 Anos'
             className='w-full max-w-md drop-shadow-2xl animate-fade-in rounded-full'
           />
         </div>
