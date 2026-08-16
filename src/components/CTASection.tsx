@@ -44,14 +44,12 @@ export const CTASection = () => {
             </span>
           </div>
 
-          <h2 className='text-5xl md:text-7xl font-bold mb-6 leading-tight'>
-            <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-              Comece Hoje Sua Transformação
-            </span>
+          <h2 className='text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground'>
+            Comece Hoje Sua Transformação
           </h2>
 
           <p className='text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10'>
-            Mais de 75 anos formando cidadãos do mundo. Sua jornada para a
+            Mais de 76 anos formando cidadãos do mundo. Sua jornada para a
             fluência começa agora — com estrutura, método e resultados reais.
           </p>
 

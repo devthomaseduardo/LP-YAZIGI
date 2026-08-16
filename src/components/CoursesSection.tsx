@@ -1,4 +1,4 @@
-import { Baby, Users, Briefcase, Globe, Plane, ChevronDown } from 'lucide-react'
+import { Baby, Users, Briefcase, Globe, Plane } from 'lucide-react'
 import { IoLogoWhatsapp } from 'react-icons/io'
 import { Button } from '@/components/ui/button'
 import {
@@ -188,21 +188,21 @@ export const CoursesSection = () => {
   }
 
   return (
-    <section className='py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'>
+    <section id='cursos' className='py-20 bg-gradient-to-b from-muted/50 to-background relative overflow-hidden'>
       <div className='absolute top-10 right-20 w-64 h-64 bg-gradient-to-br from-primary/5 to-transparent rounded-full blur-3xl' />
       <div className='absolute bottom-10 left-20 w-72 h-72 bg-gradient-to-br from-accent/5 to-transparent rounded-full blur-3xl' />
 
       <div className='container px-4 relative z-10'>
         <div className='text-center mb-16 animate-fade-in'>
-          <div className='inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 via-accent/10 to-cyan/10 rounded-full mb-4'>
-            <span className='text-black font-bold text-sm uppercase tracking-wide'>
+          <div className='inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4'>
+            <span className='text-primary font-bold text-sm uppercase tracking-wide'>
               Cursos • Yázigi
             </span>
           </div>
-          <h2 className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
+          <h2 className='text-4xl md:text-6xl font-bold mb-4 text-foreground'>
             Cursos Que Transformam
           </h2>
-          <p className='text-lg text-black/70 max-w-2xl mx-auto'>
+          <p className='text-lg text-muted-foreground max-w-2xl mx-auto'>
             Do primeiro contato ao domínio completo: metodologia exclusiva
             Yázigi + Certificação Pearson Internacional
           </p>
@@ -265,8 +265,8 @@ export const CoursesSection = () => {
 
                       <Accordion type="single" collapsible className="mb-4">
                         {level.highlights.map((highlight, idx) => (
-                          <AccordionItem 
-                            key={idx} 
+                          <AccordionItem
+                            key={idx}
                             value={`item-${idx}`}
                             className="border-b border-black/10 last:border-0"
                           >

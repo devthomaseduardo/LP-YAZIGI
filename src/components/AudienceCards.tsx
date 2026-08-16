@@ -8,7 +8,7 @@ const audiences = [
     title: 'Yázigi Travel',
     subtitle: 'Intercâmbio e Aventura',
     description:
-      'Explore o mundo com nossos programas exclusivos de intercâmbio. Oferecemos segurança, acompanhamento completo e uma imersão cultural profunda para uma fluência autêntica e inesquecível. Viaje e aprenda conosco.', // Texto padronizado
+      'Explore o mundo com nossos programas exclusivos de intercâmbio. Oferecemos segurança, acompanhamento completo e uma imersão cultural profunda para uma fluência autêntica e inesquecível. Viaje e aprenda conosco.',
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -17,7 +17,7 @@ const audiences = [
     title: 'Yázigi for Business',
     subtitle: 'Inglês Corporativo',
     description:
-      'Desenvolva as habilidades de comunicação global da sua equipe com nossas soluções corporativas personalizadas. Aumente a competitividade e expanda mercados, impulsionando o crescimento internacional da sua empresa.', // Texto padronizado
+      'Desenvolva as habilidades de comunicação global da sua equipe com nossas soluções corporativas personalizadas. Aumente a competitividade e expanda mercados, impulsionando o crescimento internacional da sua empresa.',
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -26,7 +26,7 @@ const audiences = [
     title: 'Yázigi for Schools',
     subtitle: 'Parceria Educacional',
     description:
-      'Leve a excelência Yázigi para sua escola regular. Oferecemos metodologia e material didático de ponta, preparando seus alunos para um futuro global diretamente na sala de aula. Uma parceria transformadora.', // Texto padronizado
+      'Leve a excelência Yázigi para sua escola regular. Oferecemos metodologia e material didático de ponta, preparando seus alunos para um futuro global diretamente na sala de aula. Uma parceria transformadora.',
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   }
@@ -54,12 +54,12 @@ export const AudienceCards = () => {
 
       <div className='container px-4 relative z-10'>
         <div className='text-center mb-16 animate-fade-in'>
-          <div className='inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-primary/10 via-accent/10 to-cyan/10 rounded-full mb-4'>
+          <div className='inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full mb-4'>
             <span className='text-primary font-bold text-sm uppercase tracking-wide'>
               Quem Somos • Who We Serve
             </span>
           </div>
-          <h2 className='text-4xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
+          <h2 className='text-4xl md:text-6xl font-bold mb-4 text-foreground'>
             Hub educacional Yázigi
           </h2>
           <p className='text-xl text-muted-foreground max-w-2xl mx-auto'>

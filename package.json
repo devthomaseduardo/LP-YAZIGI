@@ -25,6 +25,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "seo": "node scripts/seo/generate.mjs",
+    "prebuild": "npm run seo",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",

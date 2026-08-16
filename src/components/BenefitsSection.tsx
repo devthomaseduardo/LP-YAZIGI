@@ -15,7 +15,7 @@ const benefits = [
     title: 'Speaking From Day 1',
     titlePt: 'Conversação Desde o Dia 1',
     description:
-      'Metodologia única que estimula o pensamento crítico e coloca o aluno no centro do seu aprendizado. Conversação desde a primeira aula para aprender ainda mais rápido e de forma eficaz.', // Texto padronizado
+      'Metodologia única que estimula o pensamento crítico e coloca o aluno no centro do seu aprendizado. Conversação desde a primeira aula para aprender ainda mais rápido e de forma eficaz.',
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -24,7 +24,7 @@ const benefits = [
     title: 'Monitored Progress',
     titlePt: 'Progresso Monitorado',
     description:
-      'Corpo docente altamente qualificado, que vai muito além do papel de instrutores. São verdadeiros educadores dedicados a proporcionar uma experiência completa e significativa para o aluno.', // Texto padronizado
+      'Corpo docente altamente qualificado, que vai muito além do papel de instrutores. São verdadeiros educadores dedicados a proporcionar uma experiência completa e significativa para o aluno.',
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -33,7 +33,7 @@ const benefits = [
     title: 'Safe & Fun Environment',
     titlePt: 'Ambiente Lúdico e Seguro',
     description:
-      'Crianças aprendem inglês de forma leve e divertida, a partir dos 3 anos, em um ambiente totalmente seguro e estimulante para o seu desenvolvimento.', // Texto padronizado
+      'Crianças aprendem inglês de forma leve e divertida, a partir dos 3 anos, em um ambiente totalmente seguro e estimulante para o seu desenvolvimento.',
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   },
@@ -42,7 +42,7 @@ const benefits = [
     title: 'Exclusive Collections',
     titlePt: 'Coleções Exclusivas',
     description:
-      'Material didático inovador e cuidadosamente adaptado à faixa etária e ao estágio de desenvolvimento de cada aluno, garantindo aprendizado contínuo.', // Texto padronizado
+      'Material didático inovador e cuidadosamente adaptado à faixa etária e ao estágio de desenvolvimento de cada aluno, garantindo aprendizado contínuo.',
     color: 'primary',
     gradient: 'from-primary/20 via-primary/10 to-transparent'
   },
@@ -51,7 +51,7 @@ const benefits = [
     title: 'International Exams',
     titlePt: 'Exames Internacionais',
     description:
-      'Prepara para exames Pearson que comprovam sua fluência e garantem sua comunicação global, abrindo portas para oportunidades em todo o mundo.', // Texto padronizado
+      'Prepara para exames Pearson que comprovam sua fluência e garantem sua comunicação global, abrindo portas para oportunidades em todo o mundo.',
     color: 'accent',
     gradient: 'from-accent/20 via-accent/10 to-transparent'
   },
@@ -60,7 +60,7 @@ const benefits = [
     title: 'Live & Flexible Classes',
     titlePt: 'Aulas Ao Vivo & Flexíveis',
     description:
-      'Aulas presenciais ou online com a excelência e flexibilidade que só o Yázigi oferece, adaptando-se à sua rotina e necessidades de aprendizado.', // Texto padronizado
+      'Aulas presenciais ou online com a excelência e flexibilidade que só o Yázigi oferece, adaptando-se à sua rotina e necessidades de aprendizado.',
     color: 'cyan',
     gradient: 'from-cyan/20 via-cyan/10 to-transparent'
   }
@@ -87,10 +87,8 @@ export const BenefitsSection = () => {
             </span>
           </div>
 
-          <h2 className='text-5xl md:text-7xl font-bold mb-6 leading-tight'>
-            <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-              Por Que Sua Voz Será Ouvida
-            </span>
+          <h2 className='text-5xl md:text-7xl font-bold mb-6 leading-tight text-foreground'>
+            Por Que Sua Voz Será Ouvida
           </h2>
 
           <p className='text-xl text-muted-foreground max-w-2xl mx-auto'>

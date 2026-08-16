@@ -88,9 +88,7 @@ const VideoStoryCard = ({
     const videoElement = videoRef.current
     if (!videoElement) return
 
-    let timedOut = false
     const timeoutId = window.setTimeout(() => {
-      timedOut = true
       tryRangeProbe(videoElement.src)
     }, 8000)
 
@@ -239,10 +237,8 @@ export const TestimonialsSection = () => {
     >
       <div className='container px-4 md:px-6 relative z-10'>
         <div className='text-center mb-12 md:mb-16'>
-          <h2 className='text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight px-4'>
-            <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-              Resultados Comprovados
-            </span>
+          <h2 className='text-3xl md:text-5xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight px-4 text-foreground'>
+            Resultados Comprovados
           </h2>
           <p className='text-base md:text-xl text-muted-foreground max-w-2xl mx-auto px-4'>
             A experiência dos nossos alunos é a melhor prova de que nossa
@@ -285,10 +281,8 @@ export const TestimonialsSection = () => {
 
         <div className='mt-16 md:mt-24'>
           <div className='text-center mb-12'>
-            <h3 className='text-2xl md:text-4xl font-bold mb-4'>
-              <span className='bg-gradient-to-r from-primary via-accent to-cyan bg-clip-text text-transparent'>
-                Assista Nossas Histórias de Sucesso
-              </span>
+            <h3 className='text-2xl md:text-4xl font-bold mb-4 text-foreground'>
+              Assista Nossas Histórias de Sucesso
             </h3>
             <p className='text-base md:text-lg text-muted-foreground'>
               Veja o que alunos e pais têm a dizer sobre o Yázigi Swiss Park.
